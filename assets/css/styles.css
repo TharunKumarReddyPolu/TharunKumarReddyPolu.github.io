@@ -469,7 +469,7 @@ img {
     width: 200px;
   }
   .project-title {
-    width: 150px;
+    width: 80%;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -522,8 +522,8 @@ img {
   }
 
   .project-title {
-    width: 360px;
-    padding: 1rem 1rem 0 1rem;
+    width: 80%;
+    /*padding: 1rem 1rem 0 1rem;360px*/
   }
 
   .projects__container {
@@ -589,7 +589,7 @@ img {
     column-gap: 2rem;
   }
   .project-title {
-    width: 550px;
+    width: 80%;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -606,5 +606,8 @@ img {
   }
   .home__img {
     width: 450px;
+  }
+  .project-title {
+    width: 60%;
   }
 }
