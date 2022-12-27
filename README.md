@@ -1,5 +1,8 @@
 Hello Folks!
 
-Welcome to the portfolio site of POLU THARUN KUMAR REDDY !
+Welcome to the portfolio site of __POLU THARUN KUMAR REDDY !__
 
-Please have a glance and let me know your valuable suggestions to help improve better. Thank you in advance :)
+Please have a glance and let me know your valuable suggestions to help improve UI/UX better. Thank you in advance :)
+
+<img width="946" alt="image" src="https://user-images.githubusercontent.com/62342666/209676373-7c43e517-5df1-4bfb-b48e-167c3b89f431.png">
+
