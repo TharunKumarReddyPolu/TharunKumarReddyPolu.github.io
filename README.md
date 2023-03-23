@@ -1,6 +1,6 @@
-Hello Folks!
+Hello! Thanks for visiting.
 
-Welcome to the portfolio site of __POLU THARUN KUMAR REDDY !__
+Welcome to the portfolio site of __Tharun Kumar Reddy Polu!__
 
 Please have a glance and let me know your valuable suggestions to help improve UI/UX better. Thank you in advance :)
 
