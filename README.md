@@ -6,5 +6,6 @@ Please have a glance and let me know your valuable suggestions to help improve U
 
 Portfolio Site Preview:
 
-<img width="946" alt="image" src="https://user-images.githubusercontent.com/62342666/209676373-7c43e517-5df1-4bfb-b48e-167c3b89f431.png">
+<img width="946" alt="Portfolio Preview" src="https://user-images.githubusercontent.com/62342666/227800852-c73dcf36-9b95-4d7c-b28e-431cbd7c69bc.png">
+
 
