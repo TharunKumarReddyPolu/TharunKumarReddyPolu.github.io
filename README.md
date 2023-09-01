@@ -1,4 +1,4 @@
-Hello! Thanks for visiting here.
+Hello Geek! Thanks for visiting here.
 
 Welcome to the portfolio site of __Tharun Kumar Reddy Polu!__
 
