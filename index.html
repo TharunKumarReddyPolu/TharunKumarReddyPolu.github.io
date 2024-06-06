@@ -1,308 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <!-- =====BOX ICONS===== -->
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Tharun Kumar Reddy Polu</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="/"><img src="assets/img/bot-logo.png" class="nav__logo" width="35" height="35"></a>
-                </div>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Home  <i class='bx bxs-home-smile'></i></a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About  <i class="fa-solid fa-address-card"></i></a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills  <i class='bx bxs-bulb'></i></a></li>
-                        <li class="nav__item"><a href="#cert" class="nav__link">Certifications  <i class='bx bxs-layer'></i></a></li>
-                        <li class="nav__item"><a href="#projects" class="nav__link">Projects  <i class="fa-solid fa-code"></i></a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact Me  <i class='bx bxs-user'></i></a></li>
-                    </ul>
-                </div>
+  <meta name="image" property="og:image" content="assets/img/hero-bg.jpg">
+  <title>Tharun Kumar Reddy Polu's Portfolio</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+  <!-- Favicons -->
+  <link href="assets/img/logo.jpg" rel="icon">
+  <link href="assets/img/logo.jpg" rel="apple-touch-icon">
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hola,<br>I'am <span class="home__title-color">Tharun Kumar Reddy Polu</span><br></h1>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-                    <a href="assets/img/Tharun Kumar Reddy Polu_Resume.pdf" target="_blank" class="button"><i class="fa-solid fa-hand-pointer"></i>&nbsp;&nbsp;&nbsp;&nbsp;Resume</a>
-                </div>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/tharun-reddy-polu-70213b1a4/" target="_blank" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://discord.com/users/763436847296151612" target="_blank" class="home__social-icon"><i class='bx bxl-discord-alt' ></i></a>
-                    <a href="https://github.com/TharunKumarReddyPolu" target="_blank" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
 
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/pic_without_bg.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
+<body>
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">Heyya! Welcome. <i class="fa-solid fa-handshake-simple"></i></h2>
-                        <p class="about__text"><strong>Tharun Kumar Reddy Polu</strong><br><br>
-                            <i class='bx bx-pointer'></i> 
-                            He is fueled by his passion for understanding the nuances of <strong>Software development, Distributed systems and Cloud Computing</strong>, How it works behind the scenes.<br><br> 
-                            <i class='bx bx-pointer'></i> 
-                            He considers himself a <strong>forever student</strong> who is eager to both build on his skills and constantly revamping himself in this world of massive large scale applications and stay in tune with the niche digital technologies through continued and constant learning and professional development.<br><br> <i class='bx bx-pointer'></i> 
-                            He is currently a <strong>Graduate Research Assistant-1 & Graduate Student</strong> for his <strong>Master's degree in Software Engineering</strong> at the <strong>University of Maryland, College Park</strong>. He is a former <strong>Systems Engineer at Tata Consultancy Services Ltd. Digital (TCS Digital)</strong> and is always interested in a challenge. <br><br>
-                            <i class='bx bx-pointer'></i> 
-                            Reach out by filling out this <a href="https://formsubmit.co/el/cifuxu" target="_blank">form</a> to connect! Looking forward to collaborate <i class='bx bxs-wink-smile' ></i></p>         
-                    </div>                                   
-                </div>
-            </section>
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+        <li><a href="#projects" class="nav-link scrollto"><i class='bx bx-code-alt'></i> <span>Projects</span></a></li>
+        <li><a href="#certifications" class="nav-link scrollto"><i class='bx bx-certification'></i> <span>Certifications</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+      </ul>
+    </nav><!-- .nav-menu -->
 
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
+  </header><!-- End Header -->
 
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">My Skills</h2>
-                        <p class="skills__text">I believe that the future belongs to those who learn more skills and combine them in creative ways.</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-python skills__icon'></i>
-                                <span class="skills__name">PYTHON</span>
-                            </div>
-                            <div class="skills__bar skills__python">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">90%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-google-cloud skills__icon'></i>
-                                <span class="skills__name">CLOUD COMPUTING</span>
-                            </div>
-                            <div class="skills__bar skills__cloud">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="skills__icon">
-                                    <path fill="currentColor" d="M19.5 17C19.36 17 19.24 17 19.11 17.04L17.5 13.8C17.95 13.35 18.25 12.71 18.25 12C18.25 10.62 17.13 9.5 15.75 9.5C15.61 9.5 15.5 9.5 15.35 9.54L13.74 6.3C14.21 5.84 14.5 5.21 14.5 4.5C14.5 3.12 13.38 2 12 2S9.5 3.12 9.5 4.5C9.5 5.2 9.79 5.84 10.26 6.29L8.65 9.54C8.5 9.5 8.39 9.5 8.25 9.5C6.87 9.5 5.75 10.62 5.75 12C5.75 12.71 6.04 13.34 6.5 13.79L4.89 17.04C4.76 17 4.64 17 4.5 17C3.12 17 2 18.12 2 19.5C2 20.88 3.12 22 4.5 22S7 20.88 7 19.5C7 18.8 6.71 18.16 6.24 17.71L7.86 14.46C8 14.5 8.12 14.5 8.25 14.5C8.38 14.5 8.5 14.5 8.63 14.46L10.26 17.71C9.79 18.16 9.5 18.8 9.5 19.5C9.5 20.88 10.62 22 12 22S14.5 20.88 14.5 19.5C14.5 18.12 13.38 17 12 17C11.87 17 11.74 17 11.61 17.04L10 13.8C10.45 13.35 10.75 12.71 10.75 12C10.75 11.3 10.46 10.67 10 10.21L11.61 6.96C11.74 7 11.87 7 12 7C12.13 7 12.26 7 12.39 6.96L14 10.21C13.54 10.66 13.25 11.3 13.25 12C13.25 13.38 14.37 14.5 15.75 14.5C15.88 14.5 16 14.5 16.13 14.46L17.76 17.71C17.29 18.16 17 18.8 17 19.5C17 20.88 18.12 22 19.5 22S22 20.88 22 19.5C22 18.12 20.88 17 19.5 17M4.5 20.5C3.95 20.5 3.5 20.05 3.5 19.5S3.95 18.5 4.5 18.5 5.5 18.95 5.5 19.5 5.05 20.5 4.5 20.5M13 19.5C13 20.05 12.55 20.5 12 20.5S11 20.05 11 19.5 11.45 18.5 12 18.5 13 18.95 13 19.5M7.25 12C7.25 11.45 7.7 11 8.25 11S9.25 11.45 9.25 12 8.8 13 8.25 13 7.25 12.55 7.25 12M11 4.5C11 3.95 11.45 3.5 12 3.5S13 3.95 13 4.5 12.55 5.5 12 5.5 11 5.05 11 4.5M14.75 12C14.75 11.45 15.2 11 15.75 11S16.75 11.45 16.75 12 16.3 13 15.75 13 14.75 12.55 14.75 12M19.5 20.5C18.95 20.5 18.5 20.05 18.5 19.5S18.95 18.5 19.5 18.5 20.5 18.95 20.5 19.5 20.05 20.5 19.5 20.5Z" />
-                                </svg>
-                                <span class="skills__name">DATA STRUCTURES & ALGORITHMS</span>
-                            </div>
-                            <div class="skills__bar skills__dsa">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">70%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">HTML5</span>
-                            </div>
-                            <div class="skills__bar skills__html">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Tharun Kumar Reddy Polu</h1>
+      <p>I'm <span class="typed" data-typed-items="Software Development Engineer, Graduate Research Assistant-II, Developer, Open Source contributor, Codepath Alumni, MLH Prep Fellow'23, Topmate Student Mentor, Postman Student Expert, Tech Enthusiast"></span></p>
+      <div class="social-links">
+        <a target="_blank" href="https://www.linkedin.com/in/polu-tharun-kumar-reddy/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a target="_blank" href="https://www.instagram.com/tharun_reddy_prince/" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a target="_blank" href="https://github.com/TharunKumarReddyPolu" class="github"><i class="bx bxl-github"></i></a>
+        <a target="_blank" href="https://discord.com/users/763436847296151612" class="discord"><i class="bx bxl-discord"></i></a>
+        <a target="_blank" href="https://topmate.io/tharun_kumar_reddy_polu" class="topmate"><img class="topmate" src="./assets/img/topmate.png"></a>
+        <a target="_blank" href="https://medium.com/@TharunKumarReddyPolu" class="medium"><i class='bx bxl-medium'></i></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
 
-                            </div>
-                            <div>
-                                <span class="skills__percentage">65%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">CSS3</span>
-                            </div>
-                            <div class="skills__bar skills__css">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">65%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon' ></i>
-                                <span class="skills__name">JAVASCRIPT</span>
-                            </div>
-                            <div class="skills__bar skills__js">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">70%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skills__img">              
-                        <img src="assets/img/skills.jpg" alt="" >
-                    </div>
-                </div>
-            </section>
+  <main id="main">
 
-            <!--===== CERTIFICATIONS SECTION =====-->
-            <section class="Certifications section" id="cert">
-                <h2 class="section-title">Certifications</h2>
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
 
-                <div class="cert__container bd-grid">
-                    <a href="assets/img/cert/AZ900.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/AZ900.jpg" alt=""></a>
-                    <a href="assets/img/cert/AZ204.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/AZ204.jpg" alt=""></a>
-                    <a href="assets/img/cert/PL900.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/PL900.jpg" alt=""></a>
-                    <a href="assets/img/cert/PCAP.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/PCAP.jpg" alt=""></a>
-                    <a href="assets/img/cert/Guvi.png" target="_blank" class="cert__img"><img src="assets/img/cert/Guvi.png" alt=""></a>
-                    <a href="assets/img/cert/cisco-iot.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/cisco-iot.jpg" alt=""></a>
-                    <a href="assets/img/cert/Google-Digital-Garage.jpg" target="_blank" class="cert__img"><img src="assets/img/cert/Google-Digital-Garage.jpg" alt=""></a>
-                </div>
-            </section>
+        <div class="section-title">
+          <h2>About</h2>
+          <p align="justify">I am a highly skilled software engineering professional with a robust educational background and extensive experience in the field. I am currently pursuing a Master of Engineering in Computer Software Engineering at the University of Maryland, College Park, expected to graduate in December 2024. My academic journey has equipped me with in-depth knowledge in areas such as object-oriented design, data structures and algorithms, cloud security, and AI & deep learning. I also hold a Bachelor of Engineering in Electronics & Communications Engineering from JNTU, Hyderabad, India. <br><br>
 
-            <!--PROJECTS SECTION-->
-            <section class="projects section" id="projects">
-                <h2 class="section-title">Projects</h2>
+          Throughout my career, I have demonstrated proficiency in various programming languages, including Java, Python, C/C++, JavaScript, TypeScript, SQL, HTML, CSS, and Bash. My expertise extends to frameworks and tools such as Django, Spring, ReactJS, NodeJS, Git, GitHub, Postman, and the ELK stack, among others. I am well-versed in using databases like MySQL, MongoDB, PostgreSQL, Redis, DynamoDB, SupaBase, and CosmosDB, and I am adept at implementing Agile, Scrum, and TDD methodologies.
+          
+          In my current role as a Software Development Engineer(GRA-II) at the University of Maryland, college park, I have collaborated with a team to enhance data pipelines, resulting in significant performance improvements. I have also implemented a data-sync system utilizing AWS services and Salesforce CRM, reducing manual data entry and improving data accessibility. My work at Major League Hacking involved developing a weather-based trip planning application, which earned high praise from project mentors. 
+          <br><br>
+          
+          Previously, as a Software Engineer at Tata Consultancy Services, I designed scalable microservices and REST APIs, integrated Kafka for faster processing, and automated testing processes. During my internship at Tech Mahindra, I developed robust backend REST APIs and improved database operations and security. I have led and contributed to multiple projects, including MathQuest, an LMS on AWS, Graduate Market Place, an online marketplace for students, and Librarian Bot, an automated library management system. My achievements include top rankings in coding contests and fellowships, reflecting my commitment to excellence in software engineering.
+          
+          In addition to my technical skills, I excel in project management, team collaboration, and mentoring. I am proficient in using industry-standard tools like Jira, Terraform, GitLab, and Confluence, and I have experience with data streaming and big data technologies such as PySpark, Kafka, Hadoop, Hive, and Sqoop.
+          
+          I am also familiar with Azure services, having worked briefly with Azure VMs, Blob Storage, Azure Functions, Azure Data Factory, and Data Lakes, adding versatility to my skill set. My commitment to continuous learning and upholding high standards in software engineering makes me a valuable asset to any team.</p>
+        </div>
 
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>1. Graduate Market Place</strong></h2>
-                            <p><strong>Graduate Market Place</strong> is an online marketplace designed and developed for students which serve as a common platform to sell and buy used/new products. It is a One-Stop solution for e-Exchange of products within a student(Graduates, Undergraduates and Postgraduates) community. Here you can post the product you want to sell or look for products you wanted to buy from other fellow students.</p><br>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-1.png" alt="Graduate Market Place">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunKumarReddyPolu/Graduate-Market-Place" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>2. Tweety - The Virtual Voice Assistant</strong></h2>
-                            <p><strong>TWEETY</strong> is a virtual voice assistant built on top of windows OS with python 3.x as the programming language. It was built by grabbing the features of various in-built libraries and modules in python. This voice assistant helps in assisting with various routine tasks that a Software Engineer(SWE) performs in his daily life & work life. Do check out the git repo for the features that TWEETY - The Virtual voice assistant offers :)</p>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-2.jpg" alt="Tweety - The Virtual Voice Assistant">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunReddyPolu/Tweety-Virtual-Voice-Assistant" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>3. Smart Agriculture System using Iot</strong></h2>
-                            <p>Smart Agriculture system based on IoT can monitor climatic conditions and soil moisture to grow and yeild a good crop. <br>Farmer is provided a web application using which he can monitor the temperature, humidity and soil moisture parameters. <br>Based on all the parameters he can water his crop by controlling the motors(ON/OFF) using the web application. <br>You can view the project demo video at : <a href="https://youtu.be/oo1nPQSroXY" target="_blank"> <i class='bx bxl-youtube youtube__icon'></i> Watch it Here!</a></p>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-3.jpg" alt="Smart Agriculture System using Iot">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunReddyPolu/Smart-Agriculture-System-using-Iot" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>4. Motion Sensor Home Security System</strong></h2>
-                            <p>	As per the recent survey on the thefts that are being happening in the cities, towns and even villages. They have been gradually increasing due to inefficient security systems that are currently available. In order to eradicate these mischievous incidents, there is a necessity of such a system which can detect the movement of an intruder entering the home/office. If the sensor detects any movement in its range, it gets tripped and a signal will be sent to the security system’s control panel, which will therefore connects to your monitoring center(in this case to the owner) and alerts you and the monitoring center to a potential threat in your home. This helps the household to monitor themselves through an application.<br><br></p>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-4.png" alt="Motion Sensor Home Security System">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunReddyPolu/Motion-Sensor-Home-Security-System-" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>5. Lab Attendance System using Web App and RFID</strong></h2>
-                            <p><strong>Attendance system using web app & RFID</strong> is a project implemented to automate the process of attendance system in schools, colleges and other educational institutions. Firstly, we created a table using database through SQL which consists of all the RFID tag details that are allocated uniquely for each and every student upon registration and this table also stores the name of the student, their in time and out time in periodic basis. This database acts as a back end module for our project. Secondly, we have designed a web application where the data of the student attendance in a particular time stamp will be displayed. This acts as a front-end module for our project. Further we integrated the front-end web app to the RFID technology hardware circuit which scans the tag given to the student based on their in time and out time and the data will be accessed by the faculty.</p>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-5.jpg" alt="Lab Attendance System using Web App and RFID">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunReddyPolu/Lab-Attendance-System-using-Web-App-and-RFID" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects__container">
-                    <div class="project_inside_container">
-                        <div class="project-title">
-                            <h2><strong>6. The Reptilian Game</strong></h2>
-                            <p><strong>Reptilian Game</strong> is a snake game that we might have played at least once in our childhood in the legendary NOKIA mobile. Due to the advancements now-a-days in various web tools and technologies, I thought of creating a snake game of my own desire using the skills that i have acquired in web dev. Down the line, This project is the result of this idea of rebuilding the game using HTML,CSS,JS alone.<br><br></p>
-                            <div class="project-image">
-                                <img src="assets/img/projects/project-6.png" alt="The Reptilian Game">
-                            </div>
-                            <h4>You can view the project at : <a href="https://github.com/TharunReddyPolu/SnakeGameUsingJS" target="_blank" class="Github__icon"><i class='bx bxl-github'></i> Github</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-
-
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Get in Touch!</h2>
-
-                <div class="contact__container bd-grid">
-                    <form action="https://formsubmit.co/el/cifuxu" method="POST" class="contact__form">
-                        <input id="name" name="name" type="text" required placeholder="Name" class="contact__input">
-                        <input id="email "name="email" type="email" required placeholder="Email" class="contact__input">
-                        <textarea id="message" name="" required="required" placeholder="Feel free to ping me :)" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="submit" value="Send" class="contact__button button">
-                    </form>
-                </div>
-            </section>
-        </main>
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Tharun Kumar Reddy Polu</p>
-            <div class="footer__social">
-                <a href="https://www.facebook.com/Tharunprince111" target="_blank" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://www.instagram.com/tharun_reddy_prince/?hl=en" target="_blank" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://twitter.com/tharunreddi1" target="_blank" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content">
+            <h3>Versatile Software Engineer: Integrating Advanced System Design and Cloud Computing Solutions.</h3>
+            <p class="fst-italic">
+              I specialize in seamlessly merging the realms of Software Engineering and System Design, leveraging my expertise to craft robust architectures and optimize cloud computing solutions.
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>Sep 6, 2000</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Mobile:</strong> <span>+1 (240) 438 1274</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>College Park, MD</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>tharunkumarreddy.polu@gmail.com</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Higest Degree:</strong> <span>Master's Degree</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>University:</strong> <span>University of Maryland, College Park</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Specialization:</strong> <span>Software Engineering</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>School Email:</strong> <span>tharunp@terpmail.umd.edu</span></li>
+                </ul>
+              </div>
             </div>
-            <p class="footer__copy">&#169; Tharun Kumar Reddy Polu. All rights reserved</p>
-        </footer>
+            <p>
+              Software engineering professional with extensive experience, eager to advance my career by leveraging my expertise in advanced system design and cloud computing to foster mutual growth and success. Proficient in software development, system architecture, and cloud-based solutions.
+            </p>
+          </div>
+        </div>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+      </div>
+    </section><!-- End About Section -->
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+    <!-- ======= Topmate Ratings Section ======= -->
+    <section id="facts" class="facts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>TOPMATE FACTS </h2>
+          <p align="justify">As a Graduate Research Assistant at the University of Maryland, College Park, who secured multiple prestigious assistantship offers (2 research, 1 teaching, and 2 grader) in the first semester, I leverage my diverse experiences to provide personalized mentorship to fellow students for free of cost. Through the sessions, I share insights on securing coveted academic opportunities, developing a strong research acumen, honing essential skills for success, excelling in current roles, and preparing for future endeavors, empowering you to unlock your full potential and thrive in your academic journey.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="40" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Happy Students</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class='bx bx-bookmarks' ></i>
+              <span data-purecounter-start="0" data-purecounter-end="47" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Bookings</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class='bx bxs-comment-detail' ></i>
+              <span data-purecounter-start="0" data-purecounter-end="19" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Reviews</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-award"></i>
+              <span data-purecounter-start="0" data-purecounter-end="4.9/5" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Average Rating</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Facts Section -->
+
+    <!-- ======= Skills Section ======= -->
+    <section id="skills" class="skills section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Skills</h2>
+          <p align="justify">With a diverse skill set encompassing software engineering, system design, and cloud computing, I am well-equipped to tackle complex technical challenges and deliver robust solutions. Proficient in Java, Python, AWS, and Kubernetes, I excel in developing scalable applications, optimizing system architecture, and leveraging cloud technologies for seamless deployments. Additionally, my expertise extends to microservices architecture, CI/CD pipelines, and container orchestration, enabling me to build efficient and reliable systems. Alongside having worked in an Agile Scrum environment, I possess strong analytical reasoning, problem-solving, and project management skills, allowing me to deliver impactful results and contribute to the success of any software engineering project.</p>
+        </div>
+
+        <div class="row skills-content">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">Programming Languages(Python, Java, C/C++)<i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">APIs(REST APIs, JSON/XML, GraphQL) <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Databases(MySQL, POSTGRES, MongoDB, DynamoDB, CosmosDB, Supabase) <i class="val">85%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Backend Frameworks(Spring MVC, NodeJS, Django) <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">Frontend Frameworks(ReactJS, AngularJS, JQuery) <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Tools(ElasticSearch, Logstash, Kibana, Postman, Salesforce) <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Cloud computing(AWS, Azure, Google Cloud Platform) <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Devops(Git, Github Actions, Terraform, Kubernetes, Docker) <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Skills Section -->
+
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Resume</h2>
+          <p>I am pleased to share an overview of my professional journey, highlighting my proficiency in advanced system design and cloud computing as a versatile software engineer.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="resume-title">Sumary</h3>
+            <div class="resume-item pb-0">
+              <h4>Tharun Kumar Reddy Polu</h4>
+              <p><em>With a Master of Engineering in Computer Software Engineering and extensive experience in Java, Python, and a diverse range of development tools, I am dedicated to crafting innovative software solutions that enhance system efficiency and reliability. My proficiency in Agile-Scrum methodologies allows me to swiftly adapt to evolving project needs, collaborate seamlessly with interdisciplinary teams, and consistently deliver top-notch results through iterative development.</em></p>
+              <ul>
+                <li>College Park, MD 20783</li>
+                <li>(240) 438-1274</li>
+                <li>tharunkumarreddy.polu@gmail.com</li>
+              </ul>
+            </div>
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Master of Engineering in Software Engineering</h4>
+              <h5>2023 - 2024</h5>
+              <ul>
+                <li>GPA: 3.8/4.0</li>
+                <li>Relevant Coursework: Software Engineering, Hacking of C Programs and UNIX binaries, Data Structures and Algorithms, Software Design & Implementation, Reverse Software Engineering, Fundamentals for Artificial Intelligence and Deep Learning Framework, System and Software Requirements, Software Testing & Maintenence, Cloud Security</li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <h4>Bachelor of Engineering in Electronics &amp; Communication Engineering</h4>
+              <h5>2017 - 2021</h5>
+              <ul>
+                <li>GPA: 3.50/4.00</li>
+                <li>Relevant Coursework: Computer Programming in C, Java Programming, Computer Networks, Digital Communications, Switching Theory and Logic Design, Business Economics and Financial Analysis</li>
+              </ul>
+            </div>
+
+            <h3 class="resume-title">Achievements & Extra Curricular Activities</h3>
+            <div class="resume-item">
+              <ul>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Senior graphic design specialist</h4>
+              <h5>2019 - Present</h5>
+              <p><em>Experion, New York, NY </em></p>
+              <ul>
+                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
+                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
+                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
+                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <h4>Graphic design specialist</h4>
+              <h5>2017 - 2018</h5>
+              <p><em>Stepping Stone Advertising, New York, NY</em></p>
+              <ul>
+                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
+                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
+                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
+                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Resume Section -->
+
+    <!-- ======= Projects Section ======= -->
+    <section id="projects" class="portfolio section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Projects</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Certifications Section ======= -->
+    <section id="certifications" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Certifications</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bx bxl-dribbble"></i>
+              </div>
+              <h4><a href="">Microsoft Azure Developer Associate</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-orange ">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
+                </svg>
+                <i class="bx bx-file"></i>
+              </div>
+              <h4><a href="">Sed Perspiciatis</a></h4>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-pink">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
+                </svg>
+                <i class="bx bx-tachometer"></i>
+              </div>
+              <h4><a href="">Magni Dolores</a></h4>
+              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-yellow">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
+                </svg>
+                <i class="bx bx-layer"></i>
+              </div>
+              <h4><a href="">Nemo Enim</a></h4>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-red">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
+                </svg>
+                <i class="bx bx-slideshow"></i>
+              </div>
+              <h4><a href="">Dele Cardo</a></h4>
+              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-teal">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                </svg>
+                <i class="bx bx-arch"></i>
+              </div>
+              <h4><a href="">Divera Don</a></h4>
+              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Testimonials</h2>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Anji Reddy Surasani</h3>
+                <h4>Automation Test Lead</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Tharun is amazing at his job. He is good with clients, does what ever it takes to help colleagues and get things done. Good at software development and quick learner. Gained technical knowledge in short span of time.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Naseeb Ur Rahman Khan</h3>
+                <h4>Software Engineer(TCS Digital)</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Tharun has always been a tech enthusiast with a wide range of technical skill sets. He has good problem solving and communication skills. He is committed to his work and is a good help to his fellow team mates. He is a quick learner and active participant throughout the project.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Reginald Amedee</h3>
+                <h4>Software Engineer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Tharun is a detailed oriented software engineer who adds a lot of value to any team. We worked on a travel application as part of our project for the Major League Hacking Prep program. I was requested to implement a feature which allowed a user to see the weather in a specific span of time. Tharun helped me debug a problem which involved an error message not showing up when a user requests weather data that is not available. He helped me evaluate this issue by looking at my code and suggesting resources that I didn't know of at the time. 
+
+                  It was a genuine pleasure working with him and I would happily work with him again!
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Alfeo Raymond</h3>
+                <h4>Software Engineer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Having worked with Tharun for three weeks, I can confidently say that he is an exceptional team player, a skilled critical thinker, and a dedicated professional who never rests until the job is done.
+
+                  Tharun's work ethic is truly admirable. He is always willing to go the extra mile to ensure that projects are completed on time and to the highest standards. His unwavering commitment to excellence has been a valuable asset to our team.
+
+                  In short, I wholeheartedly recommend Tharun as a software engineer.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Beatrix Cendana</h3>
+                <h4>UI/UX Designer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  I had the pleasure of meeting Tharun during our participation in the MLH Fellowship this year, and it was truly inspiring to connect with such a dedicated developer. Tharun consistently demonstrated exceptional problem-solving skills, actively offering assistance to anyone facing challenges within the project. I recommend Tharun as both a mentor and a great software developer to any company or organization.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Abhinav Tembulkar</h3>
+                <h4>Topmate Client</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Tharun's unique style of guiding students with his personal experiences and struggles is outstanding. His advice is very helpful for prospective masters students .
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Dhruv Desai</h3>
+                <h4>Topmate Client</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  We had an amazing talk! Tharun cleared all my doubts and gave even information than I was expecting. All of this will make my decision to select the university more concrete. I would 100% recommend people to book sessions with Tharun.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Sravani</h3>
+                <h4>Topmate Client</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  I am immensely grateful for the invaluable assistance and guidance provided by Tharun. He was friendly demeanor and insightful explanations made the entire process not only informative but also enjoyable. I sincerely appreciate the thoroughness with which they explained every detail, ensuring that I had a clear understanding of all aspects. I feel truly fortunate to have found such a knowledgeable and supportive individual who went above and beyond to help me. Thank you once again for your exceptional support and assistance.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <h3>Vikranth Reddimasu</h3>
+                <h4>Topmate Client</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  I loved the session with Mr Tharun Kumar. He was very insightful, and friendly. I loved and inspired from his initiative of helping the upcoming grad students for UMD and I am very grateful for his invaluable time, and patience!
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+
+          </div>
+          <!-- Akshay comment start -->
+        </div>
+        <div class="swiper-pagination"></div>
+        <div style="text-align:center">
+          <a target="_blank" href="" className="btn btn-outlined">
+            <button type="submit" class="btn btn-primary btn-outlined">Add your Testimonial here</button>
+          </a>
+        </div>
+      </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact Me</h2>
+        </div>
+
+        <div class="row mt-1">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>College Park, MD, USA 20783</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>tharunkumarreddy.polu@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 (240) 438-1274</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Tharun Kumar Reddy Polu</h3>
+      <p>"Software engineering is not just code; it's the foundation for creating innovative systems and driving technology. Embrace the art of system design and cloud computing, and you'll discover limitless potential."</p>
+      <div class="social-links">
+        <a target="_blank" href="https://www.linkedin.com/in/polu-tharun-kumar-reddy/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a target="_blank" href="https://www.instagram.com/tharun_reddy_prince/" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a target="_blank" href="https://github.com/TharunKumarReddyPolu" class="github"><i class="bx bxl-github"></i></a>
+        <a target="_blank" href="https://discord.com/users/763436847296151612" class="discord"><i class="bx bxl-discord"></i></a>
+        <a target="_blank" href="https://topmate.io/tharun_kumar_reddy_polu" class="topmate"><img class="topmate" src="./assets/img/topmate1.png"></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
 </html>
