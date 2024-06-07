@@ -1,11 +1,3 @@
-/**
-* Template Name: MyResume
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -171,28 +163,28 @@
   }
 
   /**
-   * Porfolio isotope and filter
+   * Projects isotope and filter
    */
   window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+    let certificationsContainer = select('.certifications-container');
+    if (certificationsContainer) {
+      let certificationsIsotope = new Isotope(certificationsContainer, {
+        itemSelector: '.certifications-item'
       });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+      let certificationsFilters = select('#certifications-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#certifications-flters li', function(e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        certificationsFilters.forEach(function(el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
 
-        portfolioIsotope.arrange({
+        certificationsIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        certificationsIsotope.on('arrangeComplete', function() {
           AOS.refresh()
         });
       }, true);
@@ -201,25 +193,25 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate certifications lightbox 
    */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
+  const certificationsLightbox = GLightbox({
+    selector: '.certifications-lightbox'
   });
 
   /**
-   * Initiate portfolio details lightbox 
+   * Initiate certifications details lightbox 
    */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
+  const certificationsDetailsLightbox = GLightbox({
+    selector: '.certifications-details-lightbox',
     width: '90%',
     height: '90vh'
   });
 
   /**
-   * Portfolio details slider
+   * certifications details slider
    */
-  new Swiper('.portfolio-details-slider', {
+  new Swiper('.certifications-details-slider', {
     speed: 400,
     loop: true,
     autoplay: {
