@@ -308,6 +308,7 @@ h6 {
 
 #hero .social-links {
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 #hero .social-links a {
@@ -321,6 +322,20 @@ h6 {
 
 #hero .social-links a:hover {
   color: #0563bb;
+}
+
+#hero .btn-scroll {
+  transition: 0.4s;
+  color: rgba(2, 2, 2, 0.6);
+  animation: up-down 1s ease-in-out infinite alternate-reverse both;
+}
+
+#hero .btn-scroll i {
+  font-size: 30px;
+}
+
+#hero .btn-scroll:hover {
+  color: #13629f;
 }
 
 @media (max-width: 992px) {
@@ -338,6 +353,23 @@ h6 {
     font-size: 20px;
     line-height: 24px;
   }
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container i {
+  font-size: 30px;
+  color: #333;
 }
 
 .topmate {
@@ -1319,8 +1351,9 @@ section {
   text-decoration: none;
 }
 
-#footer .copyright {
-  margin: 0 0 5px 0;
+.footer .copyright {
+  padding-top: 25px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
 #footer .credits {
