@@ -148,19 +148,21 @@
   /**
    * Skills animation
    */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    let skillsContent = document.querySelector('.skills_content');
+    if (skillsContent) {
+      new Waypoint({
+        element: skillsContent,
+        offset: '80%',
+        handler: function(direction) {
+          let skillsBoxes = document.querySelectorAll('.skills_box');
+          skillsBoxes.forEach((box) => {
+            box.classList.add('visible');
+          });
+        }
+      });
+    }
+  });
 
   /**
    * Projects isotope and filter
@@ -242,6 +244,74 @@
       clickable: true
     }
   });
+
+  /**
+   * Projects See More Button
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectsSeeMoreBtn = document.getElementById('projects-see-more-btn');
+    const projectsItems = document.querySelectorAll('.projects-item');
+    const projectsFollowMessage = document.getElementById('projects-follow-message');
+    let visibleProjects = 6;
+  
+    // Initially display the first 6 projects
+    for (let i = 0; i < visibleProjects; i++) {
+      if (projectsItems[i]) {
+        projectsItems[i].classList.add('visible');
+      }
+    }
+  
+    projectsSeeMoreBtn.addEventListener('click', () => {
+      const currentVisible = visibleProjects;
+      visibleProjects += 3;
+  
+      for (let i = currentVisible; i < visibleProjects; i++) {
+        if (projectsItems[i]) {
+          projectsItems[i].classList.add('visible');
+        } else {
+          projectsSeeMoreBtn.style.display = 'none';
+          projectsFollowMessage.innerHTML = `
+          <p>You've reached the end of the projects. Follow me on <a href="https://github.com/TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Github</a> for more updates!</p>
+        `;
+          break;
+        }
+      }
+    });
+  });
+
+  /**
+   * Blogs See More Button
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const blogsSeeMoreBtn = document.getElementById('blogs-see-more-btn');
+    const blogItems = document.querySelectorAll('.blog-item');
+    const blogsFollowMessage = document.getElementById('blogs-follow-message');
+    let visibleBlogs = 3;
+  
+    // Initially display the first 6 blogs
+    for (let i = 0; i < visibleBlogs; i++) {
+      if (blogItems[i]) {
+        blogItems[i].classList.add('visible');
+      }
+    }
+  
+    blogsSeeMoreBtn.addEventListener('click', () => {
+      const currentVisible = visibleBlogs;
+      visibleBlogs += 3;
+  
+      for (let i = currentVisible; i < visibleBlogs; i++) {
+        if (blogItems[i]) {
+          blogItems[i].classList.add('visible');
+        } else {
+          blogsSeeMoreBtn.style.display = 'none';
+          blogsFollowMessage.innerHTML = `
+          <p>You've reached the end of the blogs. Follow me on <a href="https://medium.com/@TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Medium</a> for more updates!</p>
+        `;
+          break;
+        }
+      }
+    });
+  });  
 
   /**
    * Animation on scroll
