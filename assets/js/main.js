@@ -246,6 +246,31 @@
   });
 
   /**
+   * Email JS
+   */
+  const contactForm = document.getElementById('contact-form');
+  const contactMessage = document.getElementById('sent-message');
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_5wfiny6', 'template_gsx9en1', '#contact-form', 'iR4cVRwdc3xjdn0cT')
+      .then(() => {
+        contactMessage.textContent = "Your message has been sent. Thank you!"
+
+        setTimeout(() => {
+          contactMessage.textContent = ''
+        }, 5000)
+
+        contactForm.reset();
+      })
+  }
+
+  contactForm.addEventListener('submit', sendEmail);
+
+
+
+  /**
    * Projects See More Button
    */
   document.addEventListener('DOMContentLoaded', () => {
