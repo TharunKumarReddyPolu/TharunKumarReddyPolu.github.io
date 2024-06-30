@@ -958,6 +958,18 @@ section {
   font-size: 16px;
 }
 
+.read-more-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#blogs-read-more-btn {
+  font-size: 13px;
+  cursor: pointer;
+}
+
 /*--------------------------------------------------------------
 # certifications
 --------------------------------------------------------------*/
