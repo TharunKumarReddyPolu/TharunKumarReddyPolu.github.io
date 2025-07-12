@@ -305,38 +305,152 @@
   });
 
   /**
-   * Blogs See More Button
+   * Blogs See More Button and Filtering
    */
   document.addEventListener('DOMContentLoaded', () => {
     const blogsSeeMoreBtn = document.getElementById('blogs-see-more-btn');
-    const blogItems = document.querySelectorAll('.blog-item');
     const blogsFollowMessage = document.getElementById('blogs-follow-message');
+    const blogContainer = document.querySelector('.blog-container');
     let visibleBlogs = 3;
-  
-    // Initially display the first 6 blogs
-    for (let i = 0; i < visibleBlogs; i++) {
-      if (blogItems[i]) {
-        blogItems[i].classList.add('visible');
-      }
-    }
-  
-    blogsSeeMoreBtn.addEventListener('click', () => {
-      const currentVisible = visibleBlogs;
-      visibleBlogs += 3;
-  
-      for (let i = currentVisible; i < visibleBlogs; i++) {
-        if (blogItems[i]) {
-          blogItems[i].classList.add('visible');
-        } else {
+
+    function updateSeeMoreButton(filteredItems) {
+      if (filteredItems.length <= 3) {
+        blogsSeeMoreBtn.style.display = 'none';
+        blogsFollowMessage.innerHTML = '';
+      } else {
+        const visibleCount = Array.from(filteredItems).filter(item => 
+          item.classList.contains('visible')).length;
+        
+        if (visibleCount >= filteredItems.length) {
           blogsSeeMoreBtn.style.display = 'none';
           blogsFollowMessage.innerHTML = `
-          <p>You've reached the end of the blogs. Follow me on <a href="https://medium.com/@TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Medium</a> for more updates!</p>
-        `;
-          break;
+            <p>You've reached the end of the blogs. Follow me on <a href="https://medium.com/@TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Medium</a> for more updates!</p>
+          `;
+        } else {
+          blogsSeeMoreBtn.style.display = 'block';
+          blogsFollowMessage.innerHTML = '';
         }
       }
+    }
+
+    function showInitialBlogs(items) {
+      Array.from(items).forEach((item, index) => {
+        if (index < visibleBlogs) {
+          item.classList.add('visible');
+        } else {
+          item.classList.remove('visible');
+        }
+      });
+    }
+
+    // Initial setup for "All" filter
+    const allBlogItems = document.querySelectorAll('.blog-item');
+    showInitialBlogs(allBlogItems);
+    updateSeeMoreButton(allBlogItems);
+
+    // Blog filtering
+    if (blogContainer) {
+      let blogFilters = document.querySelectorAll('#blog-flters li');
+      
+      blogFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          blogFilters.forEach(el => {
+            el.classList.remove('filter-active');
+          });
+          this.classList.add('filter-active');
+          
+          let filterValue = this.getAttribute('data-filter');
+          let blogItems = document.querySelectorAll('.blog-item');
+          
+          // Reset visible count when changing filters
+          visibleBlogs = 3;
+          
+          blogItems.forEach(item => {
+            // Remove all visibility classes first
+            item.classList.remove('visible', 'filter-hide', 'filter-show');
+            
+            // Show/hide based on filter
+            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+              item.classList.add('filter-show');
+            } else {
+              item.classList.add('filter-hide');
+            }
+          });
+
+          // Get filtered items
+          const filteredItems = Array.from(blogItems).filter(item => 
+            filterValue === '*' || item.classList.contains(filterValue.substring(1))
+          );
+
+          // Show initial set of filtered items
+          showInitialBlogs(filteredItems);
+          
+          // Update See More button visibility
+          updateSeeMoreButton(filteredItems);
+        });
+      });
+    }
+
+    // See More button click handler
+    blogsSeeMoreBtn.addEventListener('click', () => {
+      const activeFilter = document.querySelector('#blog-flters li.filter-active');
+      const filterValue = activeFilter.getAttribute('data-filter');
+      const blogItems = document.querySelectorAll('.blog-item');
+      
+      // Get currently filtered items
+      const filteredItems = Array.from(blogItems).filter(item => 
+        filterValue === '*' || item.classList.contains(filterValue.substring(1))
+      );
+
+      const currentVisible = visibleBlogs;
+      visibleBlogs += 3;
+
+      // Show next set of items
+      filteredItems.forEach((item, index) => {
+        if (index >= currentVisible && index < visibleBlogs) {
+          item.classList.add('visible');
+        }
+      });
+
+      updateSeeMoreButton(filteredItems);
     });
   });  
+
+  /**
+   * Blog isotope and filter
+   */
+  window.addEventListener('load', () => {
+    let blogContainer = document.querySelector('.blog-container');
+    if (blogContainer) {
+      let blogFilters = document.querySelectorAll('#blog-flters li');
+      
+      blogFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          blogFilters.forEach(el => {
+            el.classList.remove('filter-active');
+          });
+          this.classList.add('filter-active');
+          
+          let filterValue = this.getAttribute('data-filter');
+          
+          let blogItems = document.querySelectorAll('.blog-item');
+          blogItems.forEach(item => {
+            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+              item.classList.remove('filter-hide');
+              item.classList.add('filter-show');
+            } else {
+              item.classList.remove('filter-show');
+              item.classList.add('filter-hide');
+            }
+          });
+        });
+      });
+    }
+  });
 
   /**
    * Animation on scroll
