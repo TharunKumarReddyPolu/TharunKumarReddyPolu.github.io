@@ -1245,8 +1245,7 @@ section {
   z-index: 4;
 }
 
-.certifications .certifications-wrap .certifications-links a,
-.certifications .certifications-wrap .certifications-links .certifications-link-disabled {
+.certifications .certifications-wrap .certifications-links a {
   color: #45505b;
   margin: 0 2px;
   font-size: 28px;
