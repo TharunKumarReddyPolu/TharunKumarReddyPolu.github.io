@@ -271,36 +271,104 @@
 
 
   /**
-   * Projects See More Button
+   * Projects See More Button and Filtering
    */
   document.addEventListener('DOMContentLoaded', () => {
     const projectsSeeMoreBtn = document.getElementById('projects-see-more-btn');
-    const projectsItems = document.querySelectorAll('.projects-item');
     const projectsFollowMessage = document.getElementById('projects-follow-message');
+    const projectsContainer = document.querySelector('.projects-container');
     let visibleProjects = 6;
-  
-    // Initially display the first 6 projects
-    for (let i = 0; i < visibleProjects; i++) {
-      if (projectsItems[i]) {
-        projectsItems[i].classList.add('visible');
-      }
-    }
-  
-    projectsSeeMoreBtn.addEventListener('click', () => {
-      const currentVisible = visibleProjects;
-      visibleProjects += 3;
-  
-      for (let i = currentVisible; i < visibleProjects; i++) {
-        if (projectsItems[i]) {
-          projectsItems[i].classList.add('visible');
-        } else {
+
+    function updateProjectsSeeMoreButton(filteredItems) {
+      if (filteredItems.length <= 6) {
+        projectsSeeMoreBtn.style.display = 'none';
+        projectsFollowMessage.innerHTML = '';
+      } else {
+        const visibleCount = Array.from(filteredItems).filter(item =>
+          item.classList.contains('visible')).length;
+
+        if (visibleCount >= filteredItems.length) {
           projectsSeeMoreBtn.style.display = 'none';
           projectsFollowMessage.innerHTML = `
-          <p>You've reached the end of the projects. Follow me on <a href="https://github.com/TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Github</a> for more updates!</p>
-        `;
-          break;
+            <p>You've reached the end of the projects. Follow me on <a href="https://github.com/TharunKumarReddyPolu" target="_blank"><i class='bx bx-link-external'></i> Github</a> for more updates!</p>
+          `;
+        } else {
+          projectsSeeMoreBtn.style.display = 'block';
+          projectsFollowMessage.innerHTML = '';
         }
       }
+    }
+
+    function showInitialProjects(items) {
+      Array.from(items).forEach((item, index) => {
+        if (index < visibleProjects) {
+          item.classList.add('visible');
+        } else {
+          item.classList.remove('visible');
+        }
+      });
+    }
+
+    const allProjectItems = document.querySelectorAll('.projects-item');
+    showInitialProjects(allProjectItems);
+    updateProjectsSeeMoreButton(allProjectItems);
+
+    if (projectsContainer) {
+      let projectsFilters = document.querySelectorAll('#projects-flters li');
+
+      projectsFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          projectsFilters.forEach(el => {
+            el.classList.remove('filter-active');
+          });
+          this.classList.add('filter-active');
+
+          let filterValue = this.getAttribute('data-filter');
+          let projectsItems = document.querySelectorAll('.projects-item');
+
+          visibleProjects = 6;
+
+          projectsItems.forEach(item => {
+            item.classList.remove('visible', 'filter-hide', 'filter-show');
+
+            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+              item.classList.add('filter-show');
+            } else {
+              item.classList.add('filter-hide');
+            }
+          });
+
+          const filteredItems = Array.from(projectsItems).filter(item =>
+            filterValue === '*' || item.classList.contains(filterValue.substring(1))
+          );
+
+          showInitialProjects(filteredItems);
+          updateProjectsSeeMoreButton(filteredItems);
+        });
+      });
+    }
+
+    projectsSeeMoreBtn.addEventListener('click', () => {
+      const activeFilter = document.querySelector('#projects-flters li.filter-active');
+      const filterValue = activeFilter.getAttribute('data-filter');
+      const projectsItems = document.querySelectorAll('.projects-item');
+
+      const filteredItems = Array.from(projectsItems).filter(item =>
+        filterValue === '*' || item.classList.contains(filterValue.substring(1))
+      );
+
+      const currentVisible = visibleProjects;
+      visibleProjects += 3;
+
+      filteredItems.forEach((item, index) => {
+        if (index >= currentVisible && index < visibleProjects) {
+          item.classList.add('visible');
+        }
+      });
+
+      updateProjectsSeeMoreButton(filteredItems);
     });
   });
 
