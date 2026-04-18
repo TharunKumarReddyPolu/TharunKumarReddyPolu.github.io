@@ -575,4 +575,75 @@
    */
   new PureCounter();
 
+  /**
+   * Theme toggle (light / dark)
+   * - Reads current theme from <html data-theme> (set by inline head script)
+   * - Persists choice to localStorage
+   * - Mirrors to data-bs-theme so Bootstrap components follow
+   * - Syncs the LeetCard embed src (theme=default <-> theme=dark)
+   */
+  const syncLeetCardTheme = (theme) => {
+    const cards = document.querySelectorAll('.leetcode-card-embed');
+    cards.forEach((el) => {
+      const current = el.getAttribute('src');
+      if (!current) return;
+      let next = current;
+      if (theme === 'dark') {
+        next = current.replace(/([?&])theme=[^&]*/, '$1theme=dark');
+        if (next === current && !/[?&]theme=/.test(current)) {
+          next = current + (current.includes('?') ? '&' : '?') + 'theme=dark';
+        }
+      } else {
+        next = current.replace(/([?&])theme=[^&]*/, '$1theme=default');
+      }
+      if (next !== current) el.setAttribute('src', next);
+    });
+  };
+
+  const applyTheme = (theme) => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-bs-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    }
+    syncLeetCardTheme(theme);
+  };
+
+  const initTheme = () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(current);
+
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = active === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        applyTheme(next);
+      });
+    }
+
+    // If the user hasn't explicitly chosen, follow OS-level changes live.
+    if (window.matchMedia) {
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      const onChange = (e) => {
+        let stored = null;
+        try { stored = localStorage.getItem('theme'); } catch (err) {}
+        if (stored) return;
+        applyTheme(e.matches ? 'dark' : 'light');
+      };
+      if (mql.addEventListener) mql.addEventListener('change', onChange);
+      else if (mql.addListener) mql.addListener(onChange);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
+    initTheme();
+  }
+
 })()
