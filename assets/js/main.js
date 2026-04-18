@@ -521,6 +521,44 @@
   });
 
   /**
+   * Skills filter by category
+   */
+  window.addEventListener('load', () => {
+    let skillsContent = document.querySelector('.skills_content');
+    if (skillsContent) {
+      let skillsFilters = document.querySelectorAll('#skills-flters li[data-filter]');
+
+      skillsFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          skillsFilters.forEach(el => {
+            el.classList.remove('filter-active');
+          });
+          this.classList.add('filter-active');
+
+          let filterValue = this.getAttribute('data-filter');
+          let skillsItems = document.querySelectorAll('.skills_box');
+
+          skillsItems.forEach(item => {
+            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+              item.classList.remove('filter-hide');
+              item.classList.add('filter-show');
+            } else {
+              item.classList.remove('filter-show');
+              item.classList.add('filter-hide');
+            }
+          });
+
+          if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+          }
+        });
+      });
+    }
+  });
+
+  /**
    * Animation on scroll
    */
   window.addEventListener('load', () => {

@@ -73,6 +73,7 @@
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
         <li><a href="#facts" class="nav-link scrollto"><img loading="lazy" src="assets/img/misc/handshake.png"
               alt="Peer mentorship icon" class="nav-peer-icon" width="25" height="25"> <span>Peer Mentorship</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-tools"></i> <span>Skills</span></a></li>
         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
         <li><a href="#leetcode" class="nav-link scrollto"><i class="fa-brands fa-leetcode"></i> <span>LeetCode</span></a></li>
         <li><a href="#projects" class="nav-link scrollto"><i class='bx bx-code-alt'></i> <span>Projects</span></a></li>
@@ -807,147 +808,166 @@
             architecture, CI/CD pipelines, and container orchestration, enabling me to build systems. Having
             worked in an Agile Scrum environment, I have analytical reasoning, problem-solving, and project
             management skills, allowing me to deliver results and contribute to the success of any software
-            engineering project.</p>
+            engineering project.</p><br>
+
+          <button type="submit" class="btn btn-primary btn-outlined"><i class='bx bx-mouse-alt'></i> Select the
+            tags below to filter skills by category</button>
         </div>
 
-        <div class="skills_content grid">
-          <div class="skills_box">
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="50">
+            <ul id="skills-flters">
+              <li>Categories: </li>
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-languages">Languages</li>
+              <li data-filter=".filter-frontend">Frontend</li>
+              <li data-filter=".filter-backend">Backend</li>
+              <li data-filter=".filter-databases">Databases</li>
+              <li data-filter=".filter-cloud">Cloud</li>
+              <li data-filter=".filter-devops">DevOps</li>
+              <li data-filter=".filter-tools">Tools</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills_content grid" data-aos="fade-up" data-aos-delay="200">
+          <div class="skills_box filter-frontend">
             <img loading="lazy" src="assets/img/skills/html.jpg" alt="HTML" class="skills_img">
             <span class="skills_name">HTML</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-frontend">
             <img loading="lazy" src="assets/img/skills/CSS.png" alt="CSS" class="skills_img">
             <span class="skills_name">CSS</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-languages filter-frontend">
             <img loading="lazy" src="assets/img/skills/JS.jpg" alt="JavaScript" class="skills_img">
             <span class="skills_name">JavaScript</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-languages">
             <img loading="lazy" src="assets/img/skills/python.jpg" alt="Python" class="skills_img">
             <span class="skills_name">Python</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-languages">
             <img loading="lazy" src="assets/img/skills/java.png" alt="Java" class="skills_img">
             <span class="skills_name">Java</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-languages">
             <img loading="lazy" src="assets/img/skills/cpp.png" alt="C++" class="skills_img">
             <span class="skills_name">C++</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/rest-apis.jpg" alt="Rest APIs" class="skills_img">
             <span class="skills_name">Rest APIs</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/graph-ql.png" alt="GraphQL" class="skills_img">
             <span class="skills_name">GraphQL</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/mulesoft.png" alt="Mulesoft" class="skills_img">
             <span class="skills_name">Mulesoft</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-databases">
             <img loading="lazy" src="assets/img/skills/mysql.png" alt="MySQL" class="skills_img">
             <span class="skills_name">MySQL</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-databases">
             <img loading="lazy" src="assets/img/skills/postgreSQL.png" alt="PostgreSQL" class="skills_img">
             <span class="skills_name">PostgreSQL</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-databases">
             <img loading="lazy" src="assets/img/skills/mongoDB.jpg" alt="MongoDB" class="skills_img">
             <span class="skills_name">MongoDB</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-databases filter-backend">
             <img loading="lazy" src="assets/img/skills/supabase.jpg" alt="SupaBase" class="skills_img">
             <span class="skills_name">Supabase</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/springMVC.png" alt="Spring MVC" class="skills_img">
             <span class="skills_name">Spring MVC</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/nodeJS.png" alt="NodeJS" class="skills_img">
             <span class="skills_name">NodeJS</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/django.jpg" alt="Django" class="skills_img">
             <span class="skills_name">Django</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-frontend">
             <img loading="lazy" src="assets/img/skills/reactJS.png" alt="ReactJS" class="skills_img">
             <span class="skills_name">ReactJS</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-frontend">
             <img loading="lazy" src="assets/img/skills/angularJS.png" alt="AngularJS" class="skills_img">
             <span class="skills_name">Angular</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/elkstack.jpg" alt="ELK Stack" class="skills_img">
             <span class="skills_name">ELK Stack</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-tools">
             <img loading="lazy" src="assets/img/skills/postman.png" alt="Postman" class="skills_img">
             <span class="skills_name">Postman</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-tools">
             <img loading="lazy" src="assets/img/skills/salesforce.png" alt="Salesforce" class="skills_img">
             <span class="skills_name">Salesforce</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-cloud">
             <img loading="lazy" src="assets/img/skills/aws.jpg" alt="AWS" class="skills_img">
             <span class="skills_name">AWS</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-cloud">
             <img loading="lazy" src="assets/img/skills/azure.png" alt="Azure" class="skills_img">
             <span class="skills_name">Azure</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-cloud">
             <img loading="lazy" src="assets/img/skills/Google-cloud.jpg" alt="Google Cloud" class="skills_img">
             <span class="skills_name">Google Cloud</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-backend">
             <img loading="lazy" src="assets/img/skills/kafka.png" alt="Kafka" class="skills_img">
             <span class="skills_name">Kafka</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-databases">
             <img loading="lazy" src="assets/img/skills/redis.jpeg" alt="Redis" class="skills_img">
             <span class="skills_name">Redis</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops filter-tools">
             <img loading="lazy" src="assets/img/skills/git.png" alt="Git" class="skills_img">
             <span class="skills_name">Git</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/jenkins.jpg" alt="Jenkins" class="skills_img">
             <span class="skills_name">Jenkins</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/github-actions.png" alt="GitHub Actions" class="skills_img">
             <span class="skills_name">GitHub Actions</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/terraform.png" alt="Terraform" class="skills_img">
             <span class="skills_name">Terraform</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/docker.png" alt="Docker" class="skills_img">
             <span class="skills_name">Docker</span>
           </div>
-          <!-- <div class="skills_box">
+          <!-- <div class="skills_box filter-devops filter-cloud">
             <img loading="lazy" src="assets/img/skills/kubernetes.png" alt="Kubernetes" class="skills_img">
             <span class="skills_name">Kubernetes</span>
           </div> -->
-          <div class="skills_box">
+          <div class="skills_box filter-devops filter-tools">
             <img loading="lazy" src="assets/img/skills/Linux.jpg" alt="Linux" class="skills_img">
             <span class="skills_name">Linux</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-devops">
             <img loading="lazy" src="assets/img/skills/sonarQube.png" alt="SonarQube" class="skills_img">
             <span class="skills_name">SonarQube</span>
           </div>
-          <div class="skills_box">
+          <div class="skills_box filter-tools">
             <img loading="lazy" src="assets/img/skills/jira.png" alt="Jira" class="skills_img">
             <span class="skills_name">Jira</span>
           </div>
