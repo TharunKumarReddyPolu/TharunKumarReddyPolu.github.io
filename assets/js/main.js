@@ -84,10 +84,24 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
+  const setMobileNavOpen = (open) => {
+    const body = select('body')
+    const toggle = select('.mobile-nav-toggle')
+    const icon = toggle ? toggle.querySelector('i') : null
+    if (!body || !toggle) return
+
+    body.classList.toggle('mobile-nav-active', open)
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+    if (icon) {
+      icon.classList.toggle('bi-list', !open)
+      icon.classList.toggle('bi-x', open)
+    }
+  }
+
+  on('click', '.mobile-nav-toggle', function() {
+    const isOpen = select('body').classList.contains('mobile-nav-active')
+    setMobileNavOpen(!isOpen)
   })
 
   /**
@@ -99,10 +113,7 @@
 
       let body = select('body')
       if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
+        setMobileNavOpen(false)
       }
       scrollto(this.hash)
     }
@@ -133,7 +144,8 @@
    * Hero type effect
    */
   const typed = select('.typed')
-  if (typed) {
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (typed && !prefersReducedMotion) {
     let typed_strings = typed.getAttribute('data-typed-items')
     typed_strings = typed_strings.split(',')
     new Typed('.typed', {
@@ -143,6 +155,9 @@
       backSpeed: 50,
       backDelay: 2000
     });
+  } else if (typed && prefersReducedMotion) {
+    const items = (typed.getAttribute('data-typed-items') || '').split(',')
+    typed.textContent = items[0] ? items[0].trim() : typed.textContent
   }
 
   /**
@@ -248,25 +263,73 @@
   /**
    * Email JS
    */
-  const contactForm = document.getElementById('contact-form');
-  const contactMessage = document.getElementById('sent-message');
+  const contactForm = document.getElementById('contact-form')
+  if (contactForm) {
+    const loadingEl = contactForm.querySelector('.loading')
+    const errorEl = contactForm.querySelector('.error-message')
+    const sentEl = contactForm.querySelector('.sent-message')
+    const submitBtn = contactForm.querySelector('button[type="submit"]')
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+    const resetFormStatus = () => {
+      if (loadingEl) loadingEl.classList.remove('d-block')
+      if (errorEl) {
+        errorEl.classList.remove('d-block')
+        errorEl.textContent = ''
+      }
+      if (sentEl) {
+        sentEl.classList.remove('d-block')
+        sentEl.textContent = ''
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false
+        submitBtn.removeAttribute('aria-busy')
+      }
+    }
 
-    emailjs.sendForm('service_5wfiny6', 'template_gsx9en1', '#contact-form', 'iR4cVRwdc3xjdn0cT')
-      .then(() => {
-        contactMessage.textContent = "Your message has been sent. Thank you!"
+    const sendEmail = (e) => {
+      e.preventDefault()
+      resetFormStatus()
 
-        setTimeout(() => {
-          contactMessage.textContent = ''
-        }, 5000)
+      if (loadingEl) loadingEl.classList.add('d-block')
+      if (submitBtn) {
+        submitBtn.disabled = true
+        submitBtn.setAttribute('aria-busy', 'true')
+      }
 
-        contactForm.reset();
-      })
+      emailjs.sendForm('service_5wfiny6', 'template_gsx9en1', '#contact-form', 'iR4cVRwdc3xjdn0cT')
+        .then(() => {
+          if (loadingEl) loadingEl.classList.remove('d-block')
+          if (sentEl) {
+            sentEl.textContent = 'Your message has been sent. Thank you!'
+            sentEl.classList.add('d-block')
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false
+            submitBtn.removeAttribute('aria-busy')
+          }
+          contactForm.reset()
+          setTimeout(() => {
+            if (sentEl) {
+              sentEl.classList.remove('d-block')
+              sentEl.textContent = ''
+            }
+          }, 5000)
+        })
+        .catch(() => {
+          if (loadingEl) loadingEl.classList.remove('d-block')
+          if (errorEl) {
+            errorEl.textContent = 'Sorry, something went wrong. Please try again or email me directly.'
+            errorEl.classList.add('d-block')
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false
+            submitBtn.removeAttribute('aria-busy')
+          }
+        })
+    }
+
+    contactForm.addEventListener('submit', sendEmail)
   }
-
-  contactForm.addEventListener('submit', sendEmail);
 
 
 
@@ -562,11 +625,13 @@
    * Animation on scroll
    */
   window.addEventListener('load', () => {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     AOS.init({
-      duration: 1000,
+      duration: reduceMotion ? 0 : 1000,
       easing: 'ease-in-out',
       once: true,
-      mirror: false
+      mirror: false,
+      disable: reduceMotion
     })
   });
 
