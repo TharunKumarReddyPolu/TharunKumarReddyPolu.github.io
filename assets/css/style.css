@@ -889,9 +889,8 @@ section {
   top: 0;
   background: var(--color-bg);
   border: 2px solid var(--color-accent);
-}
-
-/*--------------------------------------------------------------
+}/*--------------------------------------
+------------------------
 # Common CSS for Projects & Blogs section
 --------------------------------------------------------------*/
 .see-more-btn-container {
@@ -901,8 +900,245 @@ section {
   margin: 10px 0;
 }
 
+/* Books See More button mirrors the projects one */
+#books-see-more-btn {
+  font-size: 16px;
+  cursor: pointer;
+}
 
-/*--------------------------------------------------------------
+.books-follow-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/*--------------------------------------
+------------------------
+# Books
+--------------------------------------------------------------*/
+.books .books-item {
+  margin-bottom: 30px;
+}
+
+.books-item {
+  display: none;
+}
+
+.books-item.visible {
+  display: block;
+}
+
+.books-item.filter-hide {
+  display: none;
+}
+
+.books-item.filter-show {
+  display: block;
+}
+
+.books #books-flters {
+  padding: 0;
+  margin: 0 auto 25px auto;
+  list-style: none;
+  text-align: center;
+  background: var(--color-surface);
+  border-radius: 50px;
+  padding: 2px 15px;
+}
+
+.books #books-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.books #books-flters li:hover,
+.books #books-flters li.filter-active {
+  background-color: var(--color-accent);
+  border-radius: 10%;
+  color: var(--color-text-invert);
+}
+
+.books #books-flters li:last-child {
+  margin-right: 0;
+}
+
+.books .books-wrap {
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: var(--color-projects-bg);
+  border: 5px solid var(--color-border-black);
+  /* Keep covers a bit smaller than the full grid column, centered */
+  max-width: 72%;
+  margin: 0 auto;
+}
+
+.books .books-cover::before {
+  content: "";
+  background: var(--color-overlay-white-70);
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 30px;
+  bottom: 30px;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+.books .books-cover .books-info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 3;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.books .books-cover .books-info::before {
+  display: block;
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  border-top: 3px solid var(--color-border-corner);
+  border-left: 3px solid var(--color-border-corner);
+  transition: all 0.5s ease 0s;
+  z-index: 9994;
+}
+
+.books .books-cover .books-info::after {
+  display: block;
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  border-bottom: 3px solid var(--color-border-corner);
+  border-right: 3px solid var(--color-border-corner);
+  transition: all 0.5s ease 0s;
+  z-index: 9994;
+}
+
+.books .books-cover .books-info h4 {
+  font-size: 20px;
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.books .books-cover .books-info p {
+  color: var(--color-heading);
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+.books .books-cover .books-links {
+  text-align: center;
+  z-index: 4;
+}
+
+.books .books-cover .books-links a {
+  color: var(--color-heading);
+  margin: 0 2px;
+  font-size: 28px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.books .books-cover .books-links a:hover {
+  color: var(--color-accent-light);
+}
+
+.books .books-cover:hover::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+
+.books .books-cover:hover .books-info {
+  opacity: 1;
+}
+
+.books .books-cover:hover .books-info::before {
+  top: 15px;
+  left: 15px;
+}
+
+.books .books-cover:hover .books-info::after {
+  bottom: 15px;
+  right: 15px;
+}
+
+/* Covers render at the natural book ratio (~2:3) so Open Library and
+   local covers fill the card uniformly without visible cropping.
+   The hover overlay and corner brackets live on .books-cover so they
+   shade the cover only, not the caption bar below. */
+.books .books-cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.books .books-cover img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Caption bar under each cover: title, author, Goodreads link.
+   Uses --color-surface (not the cover frame color) so text stays
+   readable in both themes — the frame var is dark even in light mode. */
+.books .books-caption {
+  padding: 14px 8px 6px;
+  text-align: center;
+  background: var(--color-surface);
+}
+
+.books .books-caption h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.books .books-caption p {
+  font-size: 13px;
+  color: var(--color-heading);
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+
+.books .books-caption .books-links a {
+  font-size: 20px;
+  color: var(--color-accent);
+}
+
+/*--------------------------------------
+------------------------
 # Projects
 --------------------------------------------------------------*/
 .projects .projects-item {

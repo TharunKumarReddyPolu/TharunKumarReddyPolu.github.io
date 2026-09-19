@@ -180,6 +180,63 @@
   });
 
   /**
+   * Certifications: render cards + category pills from
+   * assets/js/certifications-data.js. GLightbox for these cards is created
+   * at parse time (before DOMContentLoaded), so we reload it here to pick up
+   * the generated links.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const grid = document.getElementById('certifications-grid');
+    const flters = document.getElementById('certifications-flters');
+    if (flters && typeof CERT_TAGS !== 'undefined') {
+      flters.innerHTML =
+        '<li>Tags: </li>' +
+        '<li data-filter="*" class="filter-active">All</li>' +
+        CERT_TAGS.map((tag) =>
+          `<li data-filter=".filter-${esc(tag.slug)}">${esc(tag.label)}</li>`
+        ).join('');
+    }
+    if (!grid || typeof CERTIFICATIONS === 'undefined') return;
+
+    const validSlugs = typeof CERT_TAGS !== 'undefined' ? CERT_TAGS.map((t) => t.slug) : [];
+    grid.innerHTML = CERTIFICATIONS.map((cert) => {
+      const tags = Array.isArray(cert.tags) ? cert.tags.filter((t) => {
+        if (validSlugs.length && !validSlugs.includes(t)) {
+          console.warn(`Certification "${cert.title}" has unknown tag "${t}" — add it to CERT_TAGS.`);
+          return false;
+        }
+        return true;
+      }) : [];
+      const title = esc(cert.title);
+      const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      const credLink = cert.url && cert.url !== '#'
+        ? `\n                  <a target="_blank" rel="noopener noreferrer" href="${esc(cert.url)}" data-glightbox="type: external" title="certifications Details"><i class="bx bx-link"></i></a>`
+        : '';
+      return `
+          <div class="col-lg-4 col-md-6 certifications-item ${tagClasses}">
+            <div class="certifications-wrap">
+              <img loading="lazy" src="${esc(cert.img)}" class="img-fluid" alt="${title} certificate">
+              <div class="certifications-info">
+                <h4>${title}</h4>
+                <p>${esc(cert.issuer || '')}</p>
+                <div class="certifications-links">
+                  <a href="${esc(cert.img)}" data-gallery="certificationsGallery"
+                    class="certifications-lightbox" title="Zoom in"><i class='bx bx-zoom-in'></i></a>${credLink}
+                </div>
+              </div>
+            </div>
+          </div>`;
+    }).join('');
+
+    if (typeof certificationsLightbox !== 'undefined' && certificationsLightbox.reload) {
+      try { certificationsLightbox.reload(); } catch (e) { /* noop */ }
+    }
+  });
+
+  /**
    * Projects isotope and filter
    */
   window.addEventListener('load', () => {
@@ -241,6 +298,50 @@
       clickable: true
     }
   });
+
+  /**
+   * Testimonials slides — generated synchronously here (NOT on
+   * DOMContentLoaded like the other sections) because the Swiper init
+   * directly below runs at parse time and needs slides to already exist.
+   * Data comes from two files:
+   *   - MENTEE_TESTIMONIALS (assets/js/peer-mentorship-data.js) → the
+   *     "What Mentees Say" slider in the Peer Mentorship (#facts) section
+   *   - TESTIMONIALS (assets/js/testimonials-data.js) → the slider in the
+   *     main Testimonials (#testimonials) section
+   */
+  (function renderTestimonials() {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const slide = (t) => `
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img loading="lazy" src="${esc(t.img)}" class="testimonial-img" alt="">
+                <h3>${esc(t.name)}</h3>
+                <h4>${esc(t.role)}</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  ${esc(t.quote)}
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->`;
+    const mount = (wrapperEl, data, label) => {
+      if (!wrapperEl) return;
+      if (!Array.isArray(data)) {
+        console.warn(`${label} is missing or not an array — check assets/js/testimonials-data.js.`);
+        return;
+      }
+      wrapperEl.innerHTML = data.map(slide).join('');
+    };
+    document.querySelectorAll('.testimonials-slider .swiper-wrapper').forEach((wrapper) => {
+      // The slider inside the main #testimonials section uses TESTIMONIALS;
+      // the other one ("What Mentees Say" in the Topmate section) uses MENTEE_TESTIMONIALS.
+      const isMain = !!wrapper.closest('#testimonials');
+      mount(wrapper, isMain ? TESTIMONIALS : MENTEE_TESTIMONIALS,
+        isMain ? 'TESTIMONIALS' : 'MENTEE_TESTIMONIALS');
+    });
+  })();
 
   /**
    * Testimonials slider
@@ -334,16 +435,122 @@
 
 
   /**
+   * Projects: render cards + filter pills from assets/js/projects-data.js.
+   * Registered before the filter/See-More init below so the cards exist
+   * by the time those listeners query the DOM.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const grid = document.getElementById('projects-grid');
+    const flters = document.getElementById('projects-flters');
+    if (flters && typeof PROJECT_TAGS !== 'undefined') {
+      flters.innerHTML =
+        '<li>Tags: </li>' +
+        '<li data-filter="*" class="filter-active">All</li>' +
+        PROJECT_TAGS.map((tag) =>
+          `<li data-filter=".filter-${esc(tag.slug)}">${esc(tag.label)}</li>`
+        ).join('');
+    }
+    if (!grid || typeof PROJECTS === 'undefined') return;
+
+    const validSlugs = typeof PROJECT_TAGS !== 'undefined' ? PROJECT_TAGS.map((t) => t.slug) : [];
+    grid.innerHTML = PROJECTS.map((project) => {
+      const tags = Array.isArray(project.tags) ? project.tags.filter((t) => {
+        if (validSlugs.length && !validSlugs.includes(t)) {
+          console.warn(`Project "${project.title}" has unknown tag "${t}" — add it to PROJECT_TAGS.`);
+          return false;
+        }
+        return true;
+      }) : [];
+      const title = esc(project.title);
+      const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      const linksHtml = (project.links || []).map((link) =>
+        `<a target="_blank" rel="noopener noreferrer" href="${esc(link.url)}" class="projects-details-lightbox" data-glightbox="type: external" title="${esc(link.title || '')}"><i class='bx ${esc(link.icon)}'></i></a>`
+      ).join('\n                  ');
+      return `
+          <div class="col-lg-4 col-md-6 projects-item ${tagClasses}">
+            <div class="projects-wrap">
+              <img loading="lazy" src="${esc(project.cover)}" class="img-fluid" alt="${title} project thumbnail">
+              <div class="projects-info">
+                <h4>${title}</h4>
+                <div class="projects-links">
+                  ${linksHtml}
+                </div>
+              </div>
+            </div>
+          </div>`;
+    }).join('');
+  });
+
+  /**
+   * Blogs: render cards + filter pills from assets/js/blogs-data.js.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const grid = document.getElementById('blogs-grid');
+    const flters = document.getElementById('blog-flters');
+    if (flters && typeof BLOG_TAGS !== 'undefined') {
+      flters.innerHTML =
+        '<li>Tags: </li>' +
+        '<li data-filter="*" class="filter-active">All</li>' +
+        BLOG_TAGS.map((tag) =>
+          `<li data-filter=".filter-${esc(tag.slug)}">${esc(tag.label)}</li>`
+        ).join('');
+    }
+    if (!grid || typeof BLOGS === 'undefined') return;
+
+    const validSlugs = typeof BLOG_TAGS !== 'undefined' ? BLOG_TAGS.map((t) => t.slug) : [];
+    grid.innerHTML = BLOGS.map((post) => {
+      const tags = Array.isArray(post.tags) ? post.tags.filter((t) => {
+        if (validSlugs.length && !validSlugs.includes(t)) {
+          console.warn(`Blog post "${post.title}" has unknown tag "${t}" — add it to BLOG_TAGS.`);
+          return false;
+        }
+        return true;
+      }) : [];
+      const title = esc(post.title);
+      const url = esc(post.url || '#');
+      const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      return `
+            <div class="col-lg-4 col-md-6 blog-item ${tagClasses}">
+              <div class="blog-info">
+                <a target="_blank" rel="noopener noreferrer" href="${url}">
+                  <img src="${esc(post.cover)}" class="img-responsive" alt="${title} blog cover image">
+                </a>
+                <div class="blog-txt">
+                  <h4>${title}</h4>
+                  <p class="separator">${esc(post.blurb || '')}</p>
+                </div>
+                <div class="read-more-btn-container">
+                  <a target="_blank" rel="noopener noreferrer" href="${url}">
+                    <button class="blogs-read-more-btn btn btn-primary btn-outlined"> Read More <i class='bx bx-link-external'></i></button>
+                  </a>
+                </div>
+              </div>
+            </div>`;
+    }).join('');
+  });
+
+  /**
    * Projects See More Button and Filtering
    */
   document.addEventListener('DOMContentLoaded', () => {
+    const INITIAL_PROJECTS = 6;
+    const PROJECTS_STEP = 3;
     const projectsSeeMoreBtn = document.getElementById('projects-see-more-btn');
     const projectsFollowMessage = document.getElementById('projects-follow-message');
     const projectsContainer = document.querySelector('.projects-container');
-    let visibleProjects = 6;
+    let visibleProjects = INITIAL_PROJECTS;
 
     function updateProjectsSeeMoreButton(filteredItems) {
-      if (filteredItems.length <= 6) {
+      if (filteredItems.length === 0) {
+        projectsSeeMoreBtn.style.display = 'none';
+        projectsFollowMessage.innerHTML = '<p>No projects in this category yet — more coming soon!</p>';
+      } else if (filteredItems.length <= INITIAL_PROJECTS) {
         projectsSeeMoreBtn.style.display = 'none';
         projectsFollowMessage.innerHTML = '';
       } else {
@@ -391,7 +598,7 @@
           let filterValue = this.getAttribute('data-filter');
           let projectsItems = document.querySelectorAll('.projects-item');
 
-          visibleProjects = 6;
+          visibleProjects = INITIAL_PROJECTS;
 
           projectsItems.forEach(item => {
             item.classList.remove('visible', 'filter-hide', 'filter-show');
@@ -413,7 +620,7 @@
       });
     }
 
-    projectsSeeMoreBtn.addEventListener('click', () => {
+    if (projectsSeeMoreBtn) projectsSeeMoreBtn.addEventListener('click', () => {
       const activeFilter = document.querySelector('#projects-flters li.filter-active');
       const filterValue = activeFilter.getAttribute('data-filter');
       const projectsItems = document.querySelectorAll('.projects-item');
@@ -423,7 +630,7 @@
       );
 
       const currentVisible = visibleProjects;
-      visibleProjects += 3;
+      visibleProjects += PROJECTS_STEP;
 
       filteredItems.forEach((item, index) => {
         if (index >= currentVisible && index < visibleProjects) {
@@ -439,13 +646,19 @@
    * Blogs See More Button and Filtering
    */
   document.addEventListener('DOMContentLoaded', () => {
+    const INITIAL_BLOGS = 3;
+    const BLOGS_STEP = 3;
     const blogsSeeMoreBtn = document.getElementById('blogs-see-more-btn');
     const blogsFollowMessage = document.getElementById('blogs-follow-message');
     const blogContainer = document.querySelector('.blog-container');
-    let visibleBlogs = 3;
+    let visibleBlogs = INITIAL_BLOGS;
 
     function updateSeeMoreButton(filteredItems) {
-      if (filteredItems.length <= 3) {
+      if (!blogsSeeMoreBtn || !blogsFollowMessage) return;
+      if (filteredItems.length === 0) {
+        blogsSeeMoreBtn.style.display = 'none';
+        blogsFollowMessage.innerHTML = '<p>No posts in this tag yet — more coming soon!</p>';
+      } else if (filteredItems.length <= INITIAL_BLOGS) {
         blogsSeeMoreBtn.style.display = 'none';
         blogsFollowMessage.innerHTML = '';
       } else {
@@ -525,7 +738,7 @@
     }
 
     // See More button click handler
-    blogsSeeMoreBtn.addEventListener('click', () => {
+    if (blogsSeeMoreBtn) blogsSeeMoreBtn.addEventListener('click', () => {
       const activeFilter = document.querySelector('#blog-flters li.filter-active');
       const filterValue = activeFilter.getAttribute('data-filter');
       const blogItems = document.querySelectorAll('.blog-item');
@@ -536,7 +749,7 @@
       );
 
       const currentVisible = visibleBlogs;
-      visibleBlogs += 3;
+      visibleBlogs += BLOGS_STEP;
 
       // Show next set of items
       filteredItems.forEach((item, index) => {
@@ -581,6 +794,274 @@
         });
       });
     }
+  });
+
+  /**
+   * Books: render cards from assets/js/books-data.js (BOOKS array).
+   * Registered before the filter/See-More init below so the cards exist
+   * by the time those listeners query the DOM.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof BOOKS === 'undefined') {
+      console.warn('books-data.js missing or BOOKS not defined — bookshelf will be empty.');
+      return;
+    }
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const grid = document.getElementById('books-grid');
+    const booksFlters = document.getElementById('books-flters');
+
+    // Tag pills from BOOK_TAGS (All first, then one pill per tag).
+    if (booksFlters && typeof BOOK_TAGS !== 'undefined') {
+      booksFlters.innerHTML =
+        '<li>Tags: </li>' +
+        '<li data-filter="*" class="filter-active">All</li>' +
+        BOOK_TAGS.map((tag) =>
+          `<li data-filter=".filter-${esc(tag.slug)}">${esc(tag.label)}</li>`
+        ).join('');
+    }
+
+    if (!grid) return;
+
+    const validSlugs = typeof BOOK_TAGS !== 'undefined' ? BOOK_TAGS.map((t) => t.slug) : [];
+    grid.innerHTML = BOOKS.map((book) => {
+      const tags = Array.isArray(book.tags) ? book.tags.filter((t) => {
+        if (validSlugs.length && !validSlugs.includes(t)) {
+          console.warn(`Book "${book.title}" has unknown tag "${t}" — add it to BOOK_TAGS.`);
+          return false;
+        }
+        return true;
+      }) : [];
+      if (!tags.length) {
+        console.warn(`Book "${book.title}" has no valid tags — it will only show under All.`);
+      }
+      const link = esc(book.goodreads || '#');
+      const title = esc(book.title);
+      const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      return `
+          <div class="col-lg-4 col-md-6 books-item ${tagClasses}">
+            <div class="books-wrap">
+              <div class="books-cover">
+                <img loading="lazy" src="${esc(book.cover)}" class="img-fluid" alt="${title} book cover">
+                <div class="books-info">
+                  <h4>${title}</h4>
+                  <div class="books-links">
+                    <a target="_blank" rel="noopener noreferrer" href="${link}" title="Goodreads"><i class='bx bx-book-open'></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="books-caption">
+                <h4>${title}</h4>
+                <p>${esc(book.author || '')}</p>
+                <div class="books-links">
+                  <a target="_blank" rel="noopener noreferrer" href="${link}" title="View on Goodreads"><i class='bx bx-book-open'></i></a>
+                </div>
+              </div>
+            </div>
+          </div>`;
+    }).join('');
+  });
+
+  /**
+   * Books See More Button and Filtering
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const INITIAL_BOOKS = 6;
+    const BOOKS_STEP = 3;
+    const booksSeeMoreBtn = document.getElementById('books-see-more-btn');
+    const booksFollowMessage = document.getElementById('books-follow-message');
+    const booksContainer = document.querySelector('.books-container');
+    let visibleBooks = INITIAL_BOOKS;
+
+    function updateBooksSeeMoreButton(filteredItems) {
+      if (!booksSeeMoreBtn) return;
+      if (filteredItems.length === 0) {
+        booksSeeMoreBtn.style.display = 'none';
+        if (booksFollowMessage) {
+          booksFollowMessage.innerHTML = `
+            <p>No books in this tag yet — more coming soon!</p>
+          `;
+        }
+      } else if (filteredItems.length <= INITIAL_BOOKS) {
+        booksSeeMoreBtn.style.display = 'none';
+        if (booksFollowMessage) booksFollowMessage.innerHTML = '';
+      } else {
+        const visibleCount = Array.from(filteredItems).filter(item =>
+          item.classList.contains('visible')).length;
+
+        if (visibleCount >= filteredItems.length) {
+          booksSeeMoreBtn.style.display = 'none';
+          if (booksFollowMessage) {
+            booksFollowMessage.innerHTML = `
+              <p>You've reached the end of the bookshelf. More books coming soon!</p>
+            `;
+          }
+        } else {
+          booksSeeMoreBtn.style.display = 'block';
+          if (booksFollowMessage) booksFollowMessage.innerHTML = '';
+        }
+      }
+    }
+
+    function showInitialBooks(items) {
+      Array.from(items).forEach((item, index) => {
+        if (index < visibleBooks) {
+          item.classList.add('visible');
+        } else {
+          item.classList.remove('visible');
+        }
+      });
+    }
+
+    const allBookItems = document.querySelectorAll('.books-item');
+    showInitialBooks(allBookItems);
+    updateBooksSeeMoreButton(allBookItems);
+
+    if (booksContainer) {
+      let booksFilters = document.querySelectorAll('#books-flters li');
+
+      booksFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          booksFilters.forEach(el => {
+            el.classList.remove('filter-active');
+          });
+          this.classList.add('filter-active');
+
+          let filterValue = this.getAttribute('data-filter');
+          let bookItems = document.querySelectorAll('.books-item');
+
+          visibleBooks = INITIAL_BOOKS;
+
+          bookItems.forEach(item => {
+            item.classList.remove('visible', 'filter-hide', 'filter-show');
+
+            if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+              item.classList.add('filter-show');
+            } else {
+              item.classList.add('filter-hide');
+            }
+          });
+
+          const filteredItems = Array.from(bookItems).filter(item =>
+            filterValue === '*' || item.classList.contains(filterValue.substring(1))
+          );
+
+          showInitialBooks(filteredItems);
+          updateBooksSeeMoreButton(filteredItems);
+
+          if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+          }
+        });
+      });
+    }
+
+    if (booksSeeMoreBtn) {
+      booksSeeMoreBtn.addEventListener('click', () => {
+        const activeFilter = document.querySelector('#books-flters li.filter-active');
+        const filterValue = activeFilter ? activeFilter.getAttribute('data-filter') : '*';
+        const bookItems = document.querySelectorAll('.books-item');
+
+        const filteredItems = Array.from(bookItems).filter(item =>
+          filterValue === '*' || item.classList.contains(filterValue.substring(1))
+        );
+
+        const currentVisible = visibleBooks;
+        visibleBooks += BOOKS_STEP;
+
+        filteredItems.forEach((item, index) => {
+          if (index >= currentVisible && index < visibleBooks) {
+            item.classList.add('visible');
+          }
+        });
+
+        updateBooksSeeMoreButton(filteredItems);
+      });
+    }
+  });
+
+  /**
+   * Retry remote book covers (Open Library) that fail or stall, e.g. when an
+   * archive.org redirect node hangs. Each retry re-requests with a cache buster
+   * so the browser can land on a different node; the last retry also swaps the
+   * large cover (-L) for the medium one (-M), a different backend file that is
+   * visually identical at card size. Local covers are untouched.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const MAX_COVER_RETRIES = 3;
+    Array.from(document.querySelectorAll('.books-cover img'))
+      .filter((img) => /^https?:\/\//.test(img.getAttribute('src') || ''))
+      .forEach((img) => {
+        if (img.complete && img.naturalWidth > 0) return;
+        let retries = 0;
+        const originalSrc = img.getAttribute('src');
+        const isOpenLibrary = originalSrc.includes('covers.openlibrary.org');
+        const bust = () => {
+          if (retries >= MAX_COVER_RETRIES) return;
+          retries += 1;
+          if (!isOpenLibrary) {
+            // Other CDNs (e.g. O'Reilly) may reject unknown query params —
+            // a plain re-request is the safe retry there.
+            img.src = originalSrc;
+            return;
+          }
+          let base = originalSrc;
+          if (retries === MAX_COVER_RETRIES && /-L\.jpg/.test(base)) {
+            base = base.replace('-L.jpg', '-M.jpg');
+          }
+          img.src = base + (base.includes('?') ? '&' : '?') + '_r=' + retries + '-' + Date.now();
+        };
+        img.addEventListener('error', bust);
+        const kick = setInterval(() => {
+          if ((img.complete && img.naturalWidth > 0) || retries >= MAX_COVER_RETRIES) {
+            clearInterval(kick);
+            return;
+          }
+          bust();
+        }, 6000);
+      });
+  });
+
+  /**
+   * Skills: render boxes + category pills from assets/js/skills-data.js.
+   * Runs on DOMContentLoaded, before the filter wiring below on window load.
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const grid = document.getElementById('skills-grid');
+    const flters = document.getElementById('skills-flters');
+    if (flters && typeof SKILL_TAGS !== 'undefined') {
+      flters.innerHTML =
+        '<li>Categories: </li>' +
+        '<li data-filter="*" class="filter-active">All</li>' +
+        SKILL_TAGS.map((tag) =>
+          `<li data-filter=".filter-${esc(tag.slug)}">${esc(tag.label)}</li>`
+        ).join('');
+    }
+    if (!grid || typeof SKILLS === 'undefined') return;
+
+    const validSlugs = typeof SKILL_TAGS !== 'undefined' ? SKILL_TAGS.map((t) => t.slug) : [];
+    grid.innerHTML = SKILLS.map((skill) => {
+      const tags = Array.isArray(skill.tags) ? skill.tags.filter((t) => {
+        if (validSlugs.length && !validSlugs.includes(t)) {
+          console.warn(`Skill "${skill.name}" has unknown tag "${t}" — add it to SKILL_TAGS.`);
+          return false;
+        }
+        return true;
+      }) : [];
+      const name = esc(skill.name);
+      const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      return `
+          <div class="skills_box ${tagClasses}">
+            <img loading="lazy" src="${esc(skill.img)}" alt="${name}" class="skills_img">
+            <span class="skills_name">${name}</span>
+          </div>`;
+    }).join('');
   });
 
   /**
