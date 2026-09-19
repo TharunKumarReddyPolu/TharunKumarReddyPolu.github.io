@@ -839,11 +839,16 @@
       const link = esc(book.goodreads || '#');
       const title = esc(book.title);
       const tagClasses = tags.map((t) => `filter-${esc(t)}`).join(' ');
+      // Local cover is primary; if the file is missing, onerror swaps in the
+      // remote fallback (e.g. Open Library) before the retry ladder takes over.
+      const onerror = book.coverFallback
+        ? ` onerror="this.onerror=null;this.src='${esc(book.coverFallback)}';" data-cover-fallback="${esc(book.coverFallback)}"`
+        : '';
       return `
           <div class="col-lg-4 col-md-6 books-item ${tagClasses}">
             <div class="books-wrap">
               <div class="books-cover">
-                <img loading="lazy" src="${esc(book.cover)}" class="img-fluid" alt="${title} book cover">
+                <img loading="lazy" src="${esc(book.cover)}"${onerror} class="img-fluid" alt="${title} book cover">
                 <div class="books-info">
                   <h4>${title}</h4>
                   <div class="books-links">
@@ -977,11 +982,13 @@
   });
 
   /**
-   * Retry remote book covers (Open Library) that fail or stall, e.g. when an
-   * archive.org redirect node hangs. Each retry re-requests with a cache buster
-   * so the browser can land on a different node; the last retry also swaps the
-   * large cover (-L) for the medium one (-M), a different backend file that is
-   * visually identical at card size. Local covers are untouched.
+   * Retry book covers that fail or stall. Applies to remote URLs (Open
+   * Library redirects can hang on a bad archive.org node) and to local files
+   * that have a remote coverFallback in books-data.js (e.g. the file was
+   * never committed). Each retry re-requests with a cache buster so the
+   * browser can land on a different node; the last retry also swaps the large
+   * cover (-L) for the medium one (-M), a different backend file that is
+   * visually identical at card size. Covers without a fallback are untouched.
    */
   document.addEventListener('DOMContentLoaded', () => {
     const MAX_COVER_RETRIES = 3;
@@ -998,7 +1005,10 @@
       probe.src = large;
     };
     Array.from(document.querySelectorAll('.books-cover img'))
-      .filter((img) => /^https?:\/\//.test(img.getAttribute('src') || ''))
+      .filter((img) => {
+        const src = img.getAttribute('src') || '';
+        return /^https?:\/\//.test(src) || img.hasAttribute('data-cover-fallback');
+      })
       .forEach((img) => {
         if (img.complete && img.naturalWidth > 0) return;
         let retries = 0;
@@ -1007,6 +1017,12 @@
         const bust = () => {
           if (retries >= MAX_COVER_RETRIES) return;
           retries += 1;
+          // A local primary that failed or stalled: switch to the remote
+          // fallback first (e.g. the file was never committed).
+          if (retries === 1 && img.hasAttribute('data-cover-fallback')) {
+            img.src = img.getAttribute('data-cover-fallback');
+            return;
+          }
           if (!isOpenLibrary) {
             // Other CDNs (e.g. O'Reilly) may reject unknown query params —
             // a plain re-request is the safe retry there.
