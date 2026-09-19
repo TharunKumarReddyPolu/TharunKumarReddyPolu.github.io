@@ -66,10 +66,38 @@ const BOOKS = [
     goodreads: "https://www.goodreads.com/search?q=Fundamentals+of+Software+Architecture+Mark+Richards+Neal+Ford"
   },
   {
-    title: "Designing Machine Learning Systems",
-    author: "Chip Huyen",
+    title: "The Software Engineer's Guidebook",
+    author: "Gergely Orosz",
+    tags: ["tech", "career"],
+    cover: "https://covers.openlibrary.org/b/isbn/9789083381824-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/201545491-the-software-engineer-s-guidebook"
+  },
+  {
+    title: "Atomic Habits",
+    author: "James Clear",
+    tags: ["mindset"],
+    cover: "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/33154385-atomic-habits"
+  },
+  {
+    title: "Rich Dad Poor Dad",
+    author: "Robert T. Kiyosaki",
+    tags: ["money"],
+    cover: "https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/10144145-rich-dad-poor-dad"
+  },
+  {
+    title: "TED Talks",
+    author: "Chris Anderson",
+    tags: ["speaking"],
+    cover: "https://covers.openlibrary.org/b/isbn/9781472228048-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/29847148-ted-talks"
+  },
+  {
+    title: "Head First Design Patterns",
+    author: "Eric Freeman & Elisabeth Robson",
     tags: ["tech"],
-    cover: "https://covers.openlibrary.org/b/isbn/9781098107963-L.jpg?default=false",
-    goodreads: "https://www.goodreads.com/search?q=Designing+Machine+Learning+Systems+Chip+Huyen"
+    cover: "https://covers.openlibrary.org/b/isbn/9781492078005-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns"
   }
 ];

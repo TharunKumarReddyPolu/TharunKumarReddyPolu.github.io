@@ -1108,35 +1108,6 @@ section {
   object-fit: cover;
 }
 
-/* Caption bar under each cover: title, author, Goodreads link.
-   Uses --color-surface (not the cover frame color) so text stays
-   readable in both themes — the frame var is dark even in light mode. */
-.books .books-caption {
-  padding: 14px 8px 6px;
-  text-align: center;
-  background: var(--color-surface);
-}
-
-.books .books-caption h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-heading);
-  line-height: 1.35;
-  margin-bottom: 4px;
-}
-
-.books .books-caption p {
-  font-size: 13px;
-  color: var(--color-heading);
-  opacity: 0.75;
-  margin-bottom: 8px;
-}
-
-.books .books-caption .books-links a {
-  font-size: 20px;
-  color: var(--color-accent);
-}
-
 /*--------------------------------------
 ------------------------
 # Projects

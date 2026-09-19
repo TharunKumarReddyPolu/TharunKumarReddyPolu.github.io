@@ -847,15 +847,8 @@
                 <div class="books-info">
                   <h4>${title}</h4>
                   <div class="books-links">
-                    <a target="_blank" rel="noopener noreferrer" href="${link}" title="Goodreads"><i class='bx bx-book-open'></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="${link}" title="View on Goodreads"><i class='bx bx-book-open'></i></a>
                   </div>
-                </div>
-              </div>
-              <div class="books-caption">
-                <h4>${title}</h4>
-                <p>${esc(book.author || '')}</p>
-                <div class="books-links">
-                  <a target="_blank" rel="noopener noreferrer" href="${link}" title="View on Goodreads"><i class='bx bx-book-open'></i></a>
                 </div>
               </div>
             </div>
@@ -992,6 +985,18 @@
    */
   document.addEventListener('DOMContentLoaded', () => {
     const MAX_COVER_RETRIES = 3;
+    // If a cover is displaying the medium (-M) fallback, quietly re-fetch the
+    // large (-L) file in the background and swap it in once ready: -M is only
+    // ~180px wide and looks soft stretched to the ~342px card. If the large
+    // file can't be fetched, the medium one simply stays — no broken image.
+    const upgradeToLarge = (img) => {
+      const src = img.getAttribute('src') || '';
+      if (!src.includes('covers.openlibrary.org') || !/-M\.jpg/.test(src)) return;
+      const large = src.replace('-M.jpg', '-L.jpg');
+      const probe = new Image();
+      probe.onload = () => { img.src = large; };
+      probe.src = large;
+    };
     Array.from(document.querySelectorAll('.books-cover img'))
       .filter((img) => /^https?:\/\//.test(img.getAttribute('src') || ''))
       .forEach((img) => {
@@ -1015,6 +1020,7 @@
           img.src = base + (base.includes('?') ? '&' : '?') + '_r=' + retries + '-' + Date.now();
         };
         img.addEventListener('error', bust);
+        img.addEventListener('load', () => upgradeToLarge(img));
         const kick = setInterval(() => {
           if ((img.complete && img.naturalWidth > 0) || retries >= MAX_COVER_RETRIES) {
             clearInterval(kick);
