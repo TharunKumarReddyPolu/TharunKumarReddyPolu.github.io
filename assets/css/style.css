@@ -439,19 +439,36 @@ h6 {
 #hero .social-links {
   margin-top: 30px;
   margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
 }
 
 #hero .social-links a {
-  font-size: 24px;
-  display: inline-block;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
   color: var(--color-heading);
   line-height: 1;
-  margin-right: 20px;
   transition: 0.3s;
 }
 
 #hero .social-links a:hover {
   color: var(--color-accent);
+}
+
+/* Hero-only Topmate icon, scaled to match the smaller font icons and
+   stripped of the legacy -6px baseline nudge (the unscoped .topmate rule
+   still sizes/styles the footer's icon) — flex centering replaces it. */
+#hero .social-links .topmate {
+  margin-top: 0;
+}
+
+#hero .social-links img.topmate {
+  width: 18px;
+  height: 18px;
 }
 
 #hero .btn-scroll {
@@ -471,6 +488,12 @@ h6 {
 @media (max-width: 992px) {
   #hero {
     text-align: center;
+  }
+
+  /* Flex children ignore text-align, so center the wrapped icon rows
+     explicitly on mobile to match the original inline-block behavior. */
+  #hero .social-links {
+    justify-content: center;
   }
 
   #hero h1 {
