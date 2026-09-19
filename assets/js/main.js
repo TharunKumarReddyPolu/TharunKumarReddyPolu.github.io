@@ -1139,6 +1139,38 @@
   });
 
   /**
+   * Peer Mentorship stat boxes — generated synchronously here (parse time)
+   * because new PureCounter() directly below scans .purecounter elements once
+   * at init and must find them already in the DOM. Data comes from
+   * assets/js/stats-data.js.
+   */
+  (function renderMentorshipStats() {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const row = document.getElementById('mentorship-stats');
+    if (!row) return;
+    if (typeof MENTORSHIP_STATS === 'undefined' || !Array.isArray(MENTORSHIP_STATS)) {
+      console.warn('MENTORSHIP_STATS is missing or not an array — check assets/js/stats-data.js.');
+      return;
+    }
+    row.innerHTML = MENTORSHIP_STATS.map((stat, i) => {
+      const colOffset = i > 0 ? (i === 1 ? ' mt-5 mt-md-0' : ' mt-5 mt-lg-0') : '';
+      const value = stat.rating != null
+        ? `<span class="rating-value">${esc(stat.rating)}</span>`
+        : `<span data-purecounter-start="0" data-purecounter-end="${parseInt(stat.count, 10) || 0}" data-purecounter-duration="3" class="purecounter"></span>`;
+      return `
+          <div class="col-lg-3 col-md-6${colOffset}">
+            <div class="count-box">
+              <i class="${esc(stat.icon)}"></i>
+              ${value}
+              <p>${esc(stat.label)}</p>
+            </div>
+          </div>`;
+    }).join('');
+  })();
+
+  /**
    * Initiate Pure Counter 
    */
   new PureCounter();
