@@ -164,5 +164,13 @@ const BOOKS = [
     cover: "assets/img/books/subtle-art.jpg",
     coverFallback: "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg?default=false",
     goodreads: "https://www.goodreads.com/book/show/39288400-the-subtle-art-of-not-giving-a-f-ck"
+  },
+  {
+    title: "Deep Work",
+    author: "Cal Newport",
+    tags: ["mindset"],
+    cover: "assets/img/books/deep-work.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/25744928-deep-work"
   }
 ];
