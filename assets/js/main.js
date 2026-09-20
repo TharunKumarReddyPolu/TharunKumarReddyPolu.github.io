@@ -469,10 +469,15 @@
       const linksHtml = (project.links || []).map((link) =>
         `<a target="_blank" rel="noopener noreferrer" href="${esc(link.url)}" class="projects-details-lightbox" data-glightbox="type: external" title="${esc(link.title || '')}"><i class='bx ${esc(link.icon)}'></i></a>`
       ).join('\n                  ');
+      // Optional project.coverWebp: served via <picture> when the browser
+      // supports WebP, with project.cover as the universal fallback.
+      const coverHtml = project.coverWebp
+        ? `<picture class="img-fluid"><source srcset="${esc(project.coverWebp)}" type="image/webp"><img loading="lazy" src="${esc(project.cover)}" class="img-fluid" alt="${title} project thumbnail"></picture>`
+        : `<img loading="lazy" src="${esc(project.cover)}" class="img-fluid" alt="${title} project thumbnail">`;
       return `
           <div class="col-lg-4 col-md-6 projects-item ${tagClasses}">
             <div class="projects-wrap">
-              <img loading="lazy" src="${esc(project.cover)}" class="img-fluid" alt="${title} project thumbnail">
+              ${coverHtml}
               <div class="projects-info">
                 <h4>${title}</h4>
                 <div class="projects-links">

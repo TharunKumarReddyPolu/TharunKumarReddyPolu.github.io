@@ -6,6 +6,9 @@
  *   title (required) Project name shown on hover overlay.
  *   tags  (required) Array of slugs from PROJECT_TAGS; a project can have several.
  *   cover (required) Image path, e.g. 'assets/img/projects/my-project.png'.
+ *   coverWebp (optional) WebP version of the cover, served to supporting
+ *              browsers via <picture> (smaller, same image). Generate with
+ *              sharp: npx sharp-cli resize 1200 -o out.webp input.png
  *   links (required) Array of { url, title, icon } — icon is a boxicons class
  *                    (e.g. 'bxl-github', 'bx-world', 'bxl-youtube').
  *
@@ -24,7 +27,8 @@ const PROJECTS = [
   {
     title: "Article Craft",
     tags: ["opensource"],
-    cover: "assets/img/projects/article-craft.png",
+    cover: "assets/img/projects/article-craft.jpg",
+    coverWebp: "assets/img/projects/article-craft.webp",
     links: [
       { url: "https://github.com/TharunKumarReddyPolu/article-craft", title: "Github Repo", icon: "bxl-github" }
     ]

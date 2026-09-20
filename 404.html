@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Theme bootstrap: apply saved/system theme before CSS paints (prevents FOUC). -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) { /* localStorage may be unavailable (private mode) */ }
+    })();
+  </script>
+
+  <title>Page Not Found — Tharun Polu</title>
+  <meta content="Page not found. Head back to Tharun Kumar Reddy Polu's portfolio — projects, books, blogs, and mentorship." name="description">
+  <meta name="robots" content="noindex">
+  <link href="assets/img/misc/logo.jpg" rel="icon">
+  <link href="assets/img/misc/logo.jpg" rel="apple-touch-icon">
+
+  <style>
+    :root {
+      --accent: #0563bb;
+      --accent-hover: #067ded;
+      --heading: #45505b;
+      --text: #272829;
+      --bg: #ffffff;
+      --card: #f8f9fa;
+      --border: #e6e9ed;
+    }
+
+    [data-theme="dark"] {
+      --heading: #d0d4da;
+      --text: #b8bdc4;
+      --bg: #12161c;
+      --card: #1a1f27;
+      --border: #2a3038;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: background-color .25s ease, color .25s ease;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 560px;
+      width: 100%;
+      padding: 56px 40px 48px;
+      text-align: center;
+    }
+
+    .code {
+      font-size: clamp(72px, 18vw, 120px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: .04em;
+      background: linear-gradient(120deg, var(--accent), var(--accent-hover));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-family: "Raleway", "Segoe UI", sans-serif;
+      color: var(--heading);
+      font-size: 24px;
+      margin: 18px 0 10px;
+    }
+
+    p { font-size: 15.5px; line-height: 1.65; margin-bottom: 30px; }
+
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: all .25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); color: #fff; }
+
+    .btn-ghost {
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-ghost:hover { background: var(--accent); color: #fff; }
+
+    .links {
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .links a { color: var(--accent); text-decoration: none; }
+
+    .links a:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="code">404</div>
+    <h1>This page wandered off the shelf</h1>
+    <p>The link may be old or mistyped — but everything worth finding is one click away on the main site:
+      projects, the bookshelf, blogs, certifications, and mentorship.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Back to the portfolio</a>
+      <a class="btn btn-ghost" href="/#books">Browse the bookshelf</a>
+    </div>
+    <div class="links">
+      Or find me on <a href="https://github.com/TharunKumarReddyPolu" target="_blank" rel="noopener">GitHub</a>
+      · <a href="https://www.linkedin.com/in/tharunkumarreddypolu" target="_blank" rel="noopener">LinkedIn</a>
+      · <a href="https://linktr.ee/tharunkumarreddypolu" target="_blank" rel="noopener">Linktree</a>
+    </div>
+  </main>
+</body>
+
+</html>
