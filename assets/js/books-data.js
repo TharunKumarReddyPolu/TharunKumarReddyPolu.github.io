@@ -110,5 +110,53 @@ const BOOKS = [
     cover: "assets/img/books/head-first-design-patterns.jpg",
     coverFallback: "https://covers.openlibrary.org/b/isbn/9781492078005-L.jpg?default=false",
     goodreads: "https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns"
+  },
+  {
+    title: "Building a Second Brain",
+    author: "Tiago Forte",
+    tags: ["mindset"],
+    cover: "assets/img/books/building-a-second-brain.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/id/12372866-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/59616977-building-a-second-brain"
+  },
+  {
+    title: "The Staff Engineer's Path",
+    author: "Tanya Reilly",
+    tags: ["tech", "career"],
+    cover: "assets/img/books/staff-engineers-path.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9781098118730-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/61058107-the-staff-engineer-s-path"
+  },
+  {
+    title: "Clean Code: A Handbook of Agile Software Craftsmanship",
+    author: "Robert C. Martin",
+    tags: ["tech"],
+    cover: "assets/img/books/clean-code.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/id/8065615-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/3735293-clean-code"
+  },
+  {
+    title: "Software Engineering at Google: Lessons Learned from Programming Over Time",
+    author: "Titus Winters, Tom Manshreck & Hyrum Wright",
+    tags: ["tech", "career"],
+    cover: "assets/img/books/software-engineering-at-google.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9781492082798-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/48816586-software-engineering-at-google"
+  },
+  {
+    title: "The Psychology of Money: Timeless Lessons on Wealth, Greed, and Happiness",
+    author: "Morgan Housel",
+    tags: ["money"],
+    cover: "assets/img/books/psychology-of-money.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/41881472-the-psychology-of-money"
+  },
+  {
+    title: "The Subtle Art of Not Giving a F*ck",
+    author: "Mark Manson",
+    tags: ["mindset"],
+    cover: "assets/img/books/subtle-art.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/39288400-the-subtle-art-of-not-giving-a-f-ck"
   }
 ];

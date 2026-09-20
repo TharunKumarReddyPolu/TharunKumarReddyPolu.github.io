@@ -1042,6 +1042,12 @@
             clearInterval(kick);
             return;
           }
+          // A slow local file isn't a failure: lazy images below the fold or
+          // behind See More haven't even started loading yet, so nudging them
+          // would swap healthy local covers to the remote fallback. Only
+          // remote URLs get the stall nudge — local files fall back on a
+          // real `error` event instead.
+          if (!/^https?:\/\//.test(img.getAttribute('src') || '')) return;
           bust();
         }, 6000);
       });
