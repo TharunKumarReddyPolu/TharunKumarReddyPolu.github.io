@@ -1182,6 +1182,47 @@
   })();
 
   /**
+   * Social links (hero + footer) — both rows are rendered synchronously
+   * (parse time) from SOCIAL_LINKS (assets/js/socials-data.js) so they always
+   * carry the same set of profiles. Add or edit profiles in that file only.
+   */
+  (function renderSocialLinks() {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    if (typeof SOCIAL_LINKS === 'undefined' || !Array.isArray(SOCIAL_LINKS)) {
+      console.warn('SOCIAL_LINKS is missing or not an array — check assets/js/socials-data.js.');
+      return;
+    }
+    const anchorHtml = (s, imgSrc) => {
+      const cls = esc(s.cssClass || s.name.toLowerCase().replace(/\s+/g, '-'));
+      const inner = s.img
+        ? `<img loading="lazy" class="${cls}" src="${esc(imgSrc)}" alt="${esc(s.name)}">`
+        : `<i class="${esc(s.icon)}"></i>`;
+      return `<a target="_blank" href="${esc(s.url)}" class="${cls}" aria-label="${esc(s.name)} profile" title="${cls}">${inner}</a>`;
+    };
+    const heroRow = document.querySelector('#hero .social-links');
+    if (heroRow) heroRow.innerHTML = SOCIAL_LINKS.map((s) => anchorHtml(s, s.img)).join('');
+    const footerRow = document.querySelector('#footer .social-links');
+    if (footerRow) footerRow.innerHTML = SOCIAL_LINKS.map((s) => anchorHtml(s, s.imgFooter || s.img)).join('');
+  })();
+
+  /**
+   * Achievements list (Resume section) — rendered synchronously (parse time)
+   * from ACHIEVEMENTS (assets/js/achievements-data.js). Render order = array
+   * order, so keep it newest-first there.
+   */
+  (function renderAchievements() {
+    const list = document.getElementById('achievements-list');
+    if (!list) return;
+    if (typeof ACHIEVEMENTS === 'undefined' || !Array.isArray(ACHIEVEMENTS)) {
+      console.warn('ACHIEVEMENTS is missing or not an array — check assets/js/achievements-data.js.');
+      return;
+    }
+    list.innerHTML = ACHIEVEMENTS.map((a) => `<li><b>${a.year}</b> | ${a.html}</li>`).join('');
+  })();
+
+  /**
    * Initiate Pure Counter 
    */
   new PureCounter();
