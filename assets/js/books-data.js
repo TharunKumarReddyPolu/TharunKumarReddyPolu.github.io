@@ -172,5 +172,29 @@ const BOOKS = [
     cover: "assets/img/books/deep-work.jpg",
     coverFallback: "https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg?default=false",
     goodreads: "https://www.goodreads.com/book/show/25744928-deep-work"
+  },
+  {
+    title: "Kafka: The Definitive Guide",
+    author: "Neha Narkhede, Gwen Shapira & Todd Palino",
+    tags: ["tech"],
+    cover: "assets/img/books/kafka.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9781492043089-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/28321010-kafka"
+  },
+  {
+    title: "The Pragmatic Programmer, 20th Anniversary Edition",
+    author: "David Thomas & Andrew Hunt",
+    tags: ["tech", "career"],
+    cover: "assets/img/books/the-pragmatic-programmer-20th-anniversary-edition.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9780135957059-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer"
+  },
+  {
+    title: "Design Patterns: Elements of Reusable Object-Oriented Software",
+    author: "Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides",
+    tags: ["tech"],
+    cover: "assets/img/books/design-patterns.jpg",
+    coverFallback: "https://covers.openlibrary.org/b/isbn/9780201633610-L.jpg?default=false",
+    goodreads: "https://www.goodreads.com/book/show/85009.Design_Patterns"
   }
 ];
