@@ -1,7 +1,13 @@
 /**
- * BOOKSHELF DATA — add a new book by appending ONE entry to the BOOKS array,
- * and add a new filter pill by appending ONE entry to the BOOK_TAGS array.
- * Card and filter HTML are generated automatically; never edit index.html.
+ * BOOKSHELF DATA — add a new book by running:
+ *
+ *   node scripts/add-book.js <goodreads-url> --tags=tech,career
+ *
+ * It finds the Open Library cover, downloads it into assets/img/books/,
+ * and appends the entry below (English editions preferred). Or append ONE
+ * entry to the BOOKS array by hand, and a new filter pill by appending ONE
+ * entry to the BOOK_TAGS array. Card and filter HTML are generated
+ * automatically; never edit index.html.
  *
  * BOOKS entry fields:
  *   title     (required) Book title shown on the card caption + hover overlay.
