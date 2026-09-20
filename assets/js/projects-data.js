@@ -62,6 +62,14 @@ const PROJECTS = [
     ]
   },
   {
+    title: "HLD Handbook for Coding Interviews",
+    tags: ["opensource"],
+    cover: "assets/img/projects/hld-handbook.png",
+    links: [
+      { url: "https://github.com/TharunKumarReddyPolu/HLD-Handbook-for-Coding-Interviews", title: "Github Repo", icon: "bxl-github" }
+    ]
+  },
+  {
     title: "MathQuest - Online Learning Management System(e-LMS)",
     tags: ["fullstack"],
     cover: "assets/img/projects/MathQuest.png",
