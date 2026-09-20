@@ -55,10 +55,12 @@ const log = (msg) => console.log(`  ${msg}`);
 
 function parseGoodreads(input) {
   if (!input) die('Usage: node scripts/add-book.js <goodreads-url-or-id> [options]');
-  const m = String(input).match(/goodreads\.com\/(?:en\/)?book\/show\/(\d+)(?:-([a-z0-9-]+))?/i)
-    || String(input).match(/^(\d+)(?:-([a-z0-9-]+))?$/);
+  // Both slug styles: /book/show/25744928-deep-work and /book/show/4099.The_Pragmatic_Programmer
+  const m = String(input).match(/goodreads\.com\/(?:en\/)?book\/show\/(\d+)(?:\.([A-Za-z0-9_]+)|-([a-z0-9-]+))?/i)
+    || String(input).match(/^(\d+)(?:\.([A-Za-z0-9_]+)|-([a-z0-9-]+))?$/);
   if (!m) die(`Not a Goodreads book URL/id: "${input}"`);
-  return { id: m[1], slug: m[2] || '' };
+  const dotSlug = m[2] || '';
+  return { id: m[1], slug: dotSlug || m[3] || '', dot: Boolean(dotSlug) };
 }
 
 function slugifyTitle(title) {
@@ -128,7 +130,7 @@ const shortUrl = (u) => u.replace(/^https:\/\/covers\.openlibrary\.org\//, 'OL:'
   if (bad.length) die(`Unknown tag(s): ${bad.join(', ')}. BOOK_TAGS has: ${tagSlugs.join(', ')}`);
 
   // 2. Find the book on Open Library (slug makes a great query).
-  const q = (opt.title || gr.slug.replace(/-/g, ' ') || 'a').trim();
+  const q = (opt.title || gr.slug.replace(/[-_]/g, ' ') || 'a').trim();
   log(`Searching Open Library for "${q}" ...`);
   const searchUrl = 'https://openlibrary.org/search.json?q=' + encodeURIComponent(q) +
     '&fields=key,title,author_name,isbn,cover_i&limit=8';
@@ -184,7 +186,7 @@ const shortUrl = (u) => u.replace(/^https:\/\/covers\.openlibrary\.org\//, 'OL:'
     tags: [${requestedTags.map(t => `"${t}"`).join(', ')}],
     cover: "assets/img/books/${fileName}",
     coverFallback: ${JSON.stringify(cover.url)},
-    goodreads: "https://www.goodreads.com/book/show/${gr.id}${gr.slug ? `-${gr.slug}` : ''}"
+    goodreads: "https://www.goodreads.com/book/show/${gr.id}${gr.slug ? (gr.dot ? `.${gr.slug}` : `-${gr.slug}`) : ''}"
   }`;
   const insertAt = dataSrc.lastIndexOf('];');
   if (insertAt === -1) die('Could not find the end of the BOOKS array in books-data.js');
