@@ -43,7 +43,8 @@ const DATA_FILES = [
   'stats-data.js'
 ];
 
-// Global each data file is expected to define (order matters for vm execution).
+// Global(s) each data file is expected to define (order matters for vm
+// execution). A file may define more than one (e.g. stats-data.js).
 const EXPECTED_GLOBALS = {
   'socials-data.js': 'SOCIAL_LINKS',
   'achievements-data.js': 'ACHIEVEMENTS',
@@ -54,7 +55,7 @@ const EXPECTED_GLOBALS = {
   'certifications-data.js': 'CERTIFICATIONS',
   'peer-mentorship-data.js': 'MENTEE_TESTIMONIALS',
   'testimonials-data.js': 'TESTIMONIALS',
-  'stats-data.js': 'MENTORSHIP_STATS'
+  'stats-data.js': ['MENTORSHIP_STATS', 'BLOG_STATS']
 };
 
 const TAG_LISTS = {
@@ -116,7 +117,10 @@ for (const file of DATA_FILES) {
 // by themselves, same as `const` not creating window properties in browsers).
 const exportSrc = `
   __exports = {};
-  const __names = ${JSON.stringify([...Object.values(EXPECTED_GLOBALS), ...Object.values(TAG_LISTS)])};
+  const __names = ${JSON.stringify([
+    ...Object.values(EXPECTED_GLOBALS).flatMap((v) => Array.isArray(v) ? v : [v]),
+    ...Object.values(TAG_LISTS)
+  ])};
   for (const name of __names) {
     try { __exports[name] = eval(name); } catch (e) { __exports[name] = undefined; }
   }
@@ -125,9 +129,10 @@ vm.runInContext(exportSrc, context, { filename: '<export>' });
 const G = context.__exports;
 
 for (const file of loaded) {
-  const globalName = EXPECTED_GLOBALS[file];
-  if (!Array.isArray(G[globalName])) {
-    err(file, `expected top-level const ${globalName} = [...] (missing or not an array)`);
+  for (const globalName of [].concat(EXPECTED_GLOBALS[file] || [])) {
+    if (!Array.isArray(G[globalName])) {
+      err(file, `expected top-level const ${globalName} = [...] (missing or not an array)`);
+    }
   }
 }
 
@@ -292,17 +297,19 @@ for (const [file, listName] of [['testimonials-data.js', 'TESTIMONIALS'], ['peer
   }
 }
 
-for (const [i, s] of (G.MENTORSHIP_STATS || []).entries()) {
-  const label = `stat[${i}] ${s.label || '(unlabeled)'}`;
-  if (!nonEmpty(s.label)) err('stats-data.js', `${label}: "label" is missing`);
-  if (!nonEmpty(s.icon)) err('stats-data.js', `${label}: "icon" is missing`);
-  const hasCount = s.count != null;
-  const hasRating = s.rating != null;
-  if (hasCount === hasRating) {
-    err('stats-data.js', `${label}: define exactly one of "count" (number) or "rating" (string)`);
-  }
-  if (hasCount && !Number.isFinite(parseInt(s.count, 10))) {
-    err('stats-data.js', `${label}: "count" must be a number, got: ${s.count}`);
+for (const [listName, list] of [['MENTORSHIP_STATS', G.MENTORSHIP_STATS], ['BLOG_STATS', G.BLOG_STATS]]) {
+  for (const [i, s] of (list || []).entries()) {
+    const label = `${listName}[${i}] ${s.label || '(unlabeled)'}`;
+    if (!nonEmpty(s.label)) err('stats-data.js', `${label}: "label" is missing`);
+    if (!nonEmpty(s.icon)) err('stats-data.js', `${label}: "icon" is missing`);
+    const hasCount = s.count != null;
+    const hasRating = s.rating != null;
+    if (hasCount === hasRating) {
+      err('stats-data.js', `${label}: define exactly one of "count" (number) or "rating" (string)`);
+    }
+    if (hasCount && !Number.isFinite(parseInt(s.count, 10))) {
+      err('stats-data.js', `${label}: "count" must be a number, got: ${s.count}`);
+    }
   }
 }
 
@@ -338,7 +345,8 @@ const itemCounts = [
   `certs=${(G.CERTIFICATIONS || []).length}`,
   `testimonials=${(G.TESTIMONIALS || []).length}`,
   `mentees=${(G.MENTEE_TESTIMONIALS || []).length}`,
-  `stats=${(G.MENTORSHIP_STATS || []).length}`,
+  `mentorshipStats=${(G.MENTORSHIP_STATS || []).length}`,
+  `blogStats=${(G.BLOG_STATS || []).length}`,
   `socials=${(G.SOCIAL_LINKS || []).length}`,
   `achievements=${(G.ACHIEVEMENTS || []).length}`
 ].join(' ');

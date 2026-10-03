@@ -1182,6 +1182,40 @@
   })();
 
   /**
+   * Blogs stat boxes — generated synchronously here (parse time) from
+   * BLOG_STATS (assets/js/stats-data.js), for the same PureCounter reason as
+   * renderMentorshipStats above: new PureCounter() directly below scans
+   * .purecounter elements once at init and must find them already in the DOM.
+   */
+  (function renderBlogStats() {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+    const row = document.getElementById('blog-stats');
+    if (!row) return;
+    if (typeof BLOG_STATS === 'undefined' || !Array.isArray(BLOG_STATS)) {
+      console.warn('BLOG_STATS is missing or not an array — check assets/js/stats-data.js.');
+      return;
+    }
+    row.innerHTML = BLOG_STATS.map((stat, i) => {
+      // Responsive margins replicating the original static markup: first box
+      // none, last box mt-5 mt-md-0, the ones between mt-5 mt-lg-0.
+      const colOffset = i === 0 ? '' : (i === BLOG_STATS.length - 1 ? ' mt-5 mt-md-0' : ' mt-5 mt-lg-0');
+      const value = stat.rating != null
+        ? `<span class="rating-value">${esc(stat.rating)}</span>`
+        : `<span data-purecounter-start="0" data-purecounter-end="${parseInt(stat.count, 10) || 0}" data-purecounter-duration="3" class="purecounter"></span>`;
+      return `
+          <div class="col-lg-3 col-md-6${colOffset}">
+            <div class="count-box">
+              <i class="${esc(stat.icon)}"></i>
+              ${value}
+              <p>${esc(stat.label)}</p>
+            </div>
+          </div>`;
+    }).join('');
+  })();
+
+  /**
    * Social links (hero + footer) — both rows are rendered synchronously
    * (parse time) from SOCIAL_LINKS (assets/js/socials-data.js) so they always
    * carry the same set of profiles. Add or edit profiles in that file only.
